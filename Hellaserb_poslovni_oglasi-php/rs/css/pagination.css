@@ -1,0 +1,29 @@
+.pagination li{
+	list-style: none;
+	float: left;
+	width: 30px;
+	height: 30px;
+	background-color: #3BA4C7;
+        background-image: -moz-linear-gradient(top, #3BA4C7 0%, #1982A5 100%);
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 20px;
+}
+
+.pagination li:hover{
+	background-color: white;
+	border: 1px solid gray;
+	color: black;
+}
+
+.pagination ul{
+	border: 0px;
+	padding: 0px;
+}
+
+.active-class{
+	background-color: white !important;
+	color: black !important;
+}
