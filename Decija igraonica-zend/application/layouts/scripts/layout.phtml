@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Connectivity 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20121129
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+      
+        <?php print $this->headLink(); ?>
+        
+
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
+
+
+        <!--[if IE 6]>
+        <link href="default_ie6.css" rel="stylesheet" type="text/css" />
+        <![endif]-->
+    </head>
+    <body>
+        <div id="header-wrapper">
+            <div id="header">
+                <div id="logo">
+                    <img src="/img/miki.png" style="float: left; padding-top: 5px;"  width="130px"></img> <h1><a href="/"></img>Igraonica MIKI</a></h1>
+
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li class="current_page_item"><a href="/" title="">Početna</a></li>
+                        <li><a href="/zakazi"  title="">Zakaži rođendan</a></li>
+                        <li><a href="/aktivnosti"title="">Aktivnosti</a></li>
+                        <li><a href="/cenovnik" title="">Cenovnik</a></li>
+                        <li><a href="/kontakt" title="">Kontakt</a></li>
+                        
+                        <?php
+                        $logovan = Zend_Auth::getInstance();
+                        $korisnik = $logovan->getIdentity();
+                        if (!$logovan->hasIdentity()) {
+                            ?>
+                            <li><a href="/ulaz" title="" alt="Ulaz"><img src="/img/log_in.png" style="width: 28px;"></img></a></li>
+                            <?php
+                        } else {
+                            ?>                          
+                            <li><a href="/ulaz/logout">Odjava</a></li>
+                            <?php
+                        }
+                        $logovan = Zend_Auth::getInstance();
+                        $korisnik = $logovan->getIdentity()->uloga;
+                        if($logovan->hasIdentity() && $korisnik ==1){
+                            ?>
+                             <li><a href="/admin" title=""><img src="/img/admin.png" style="width: 28px;"></img></a></li>
+                                  <?php
+                        
+                        }
+                        ?>
+                    </ul>
+                </div>
+
+            </div>
+            <?php if (isset($this->Naslov)) { ?>
+                <div id="banner">
+
+                    <p><?php print $this->Naslov; ?></p>
+
+                </div>
+            <?php } ?>
+
+        </div>
+        <div id="wrapper">
+            <div id="page-wrapper">
+                <div id="page">
+
+                    <?php echo $this->layout()->content; ?>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="footer-bg">
+            <div id="footer-content" class="container">
+                <div id="column1">
+                    <h2>Mi radimo</h2>
+                    <ul class="style1">
+                        <li class="first">Caffe</br><a href="#">9h do 21h</a></li>
+                        <li>Igraonica </br><a href="#">15h do 21h</a></li>
+                    </ul>
+                </div>
+                <div id="column2">
+                    <h2>O nama</h2>
+                    <ul class="style1">
+                        <li class="first"><a href="#">Igraonica Miki, radi punom parom za najbolje rodjendane i druzenja.</a></li>
+                        <li><a href="#">Igraonica Miki je bajkovito mesto, izvor mašte i opuštanja i dobre zabave.</a></li>
+                    </ul>
+                </div>
+
+                <div id="column3">
+                    <h2>Nađte nas na :</h2>
+                    <ul class="style1">
+                        <li class="first"><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Flickr</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="container">
+            <p>&copy; Untitled. All rights reserved. Igraonica MIKI</p>
+        </div>
+    </body>
+</html>

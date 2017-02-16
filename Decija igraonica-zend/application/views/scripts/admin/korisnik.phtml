@@ -1,0 +1,32 @@
+<table class="table table-bordered table-hover tablestriped tablesorter">
+    <tr>
+        <th>
+            <i> ID</i>
+        </th>
+        <th>
+            <i> Ime korisnika </i>
+        </th>
+        <th>
+            <i> Obriši </i>
+        </th>
+    </tr>
+    <?php
+    foreach ($this->dohvati_korisnike as $ds) {
+        echo '<tr>';
+        echo '<td>';
+        echo $ds['id'];
+        echo '</td>';
+        echo '<td>';
+        echo $ds['ime'];
+        echo '</td>';
+        echo '<td>';
+        echo '<a href="/admin/obkorisnik/id/' . $ds['id'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Delete</a>';
+        echo '</td>';
+
+        echo '</tr>';
+    }
+    ?>
+</table>
+</div>
+</div>

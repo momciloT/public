@@ -1,0 +1,48 @@
+<script>
+    $(document).ready(function () {
+        var link1 = window.location.href;
+        var equalPosition1 = link1.indexOf('id/');
+        var id = link1.substring(equalPosition1 + 3);
+        $('#karton').click(function () {
+            window.location.replace("http://zubar/pacijenti/pacijentprikaz/id/" + id);
+        });
+    });
+</script>
+<button class="btn btn-outline btn-primary btn-lg" id="karton">Nazad na karton</button>
+
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="text-align: center;">organizacija</th>
+            <th style="text-align: center;">mesto_rada</th>
+            <th style="text-align: center;">registarski_broj</th>
+            <th style="text-align: center;">sifra_delatnosti</th>
+            <th style="text-align: center;">posao_koji_obavlja</th> 
+            <th style="text-align: center;">fond_zdravstene_zastite</th>
+
+          
+        </tr>
+    </thead>
+    <tbody>
+
+       <?php
+foreach ($this->pacijetniinfo as $radoviinfo => $info) {
+?>
+     <tr style="text-align: center;">
+                <td><?php print $info['organizacija']; ?></td>
+                <td><?php print $info['mesto_rada']; ?></td>
+                <td><?php print $info['registarski_broj']; ?></td>
+                <td><?php print $info['sifra_delatnosti']; ?></td>
+                <td><?php print $info['posao_koji_obavlja']; ?></td>
+                <td><?php print $info['fond_zdravstene_zastite']; ?></td>
+     </tr>
+   <?php 
+}
+?>
+
+    </tbody>
+</table>
+
+
+

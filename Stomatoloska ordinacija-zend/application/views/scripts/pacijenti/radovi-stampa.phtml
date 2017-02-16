@@ -1,0 +1,12 @@
+<?php
+
+require_once('dompdf/autoload.inc.php');
+
+
+$dompdf = new DOMPDF();
+$dompdf->load_html($pdfLayout);
+$dompdf->render();
+$pdfOutput = $dompdf->output();
+?>
+
+<p>sdaskd</p>

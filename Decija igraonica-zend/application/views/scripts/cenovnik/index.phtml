@@ -1,0 +1,17 @@
+ <div class="col-lg-12">
+ <table class="table table-bordered">
+ <tr class="table-striped">
+ <th>Naziv usluge</th>
+ <th>Cena</th>
+ </tr>
+ <?php foreach($this->cenovnik as $stavka) {?>
+
+ <tr>
+ <td><?php print $stavka['naziv'];?></td>
+ <td style="text-align: center;"><?php print $stavka['cena']." RSD";?></td>
+ </tr>
+ <?php } ?>
+ </table>
+ </div>
+ </div>
+</div>

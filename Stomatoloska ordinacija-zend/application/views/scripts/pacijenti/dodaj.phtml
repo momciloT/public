@@ -1,0 +1,20 @@
+
+
+<?php 
+echo $this->form;
+
+?>
+<center>
+    
+            <div style="color:red">
+            <?php if (count($this->messages)) : ?>
+                <?php foreach ($this->messages as $message) : ?>
+               <script type="text/javascript">
+    alert('<?php echo $this->escape($message); ?>');
+</script>
+                    -
+                <?php endforeach; ?>
+            <?php endif; ?>
+            </div>
+        </center>
+</div>

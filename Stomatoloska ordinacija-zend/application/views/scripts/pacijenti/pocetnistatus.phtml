@@ -1,0 +1,462 @@
+
+
+<div class="color-widget">
+    <button class="btn btn-outline btn-primary" id="karton">Nazad na karton</button>
+    <?php echo $this->proba; ?></div>
+
+<div id="zubi"><img src="/img/zubi-mali.png" id="slika1" usemap="#planetmap"/></div>
+
+<div id="zub" class="zub">
+    <form name="delovizuba" action="">
+
+        <div id="desno_unos">
+
+            <div id="povrsine">
+                <div id="p2" style="margin-left: 25px;">
+                    <polje class="nista" style="margin-left: 100px;">
+                        <input type="radio" name="p2" checked="checked" value="0" id="p2n"><label for="p2n"></label>
+                    </polje>
+                    <polje class="plava">
+                        <input type="radio" name="p2" value="1" id="p2p"><label for="p2p"></label> 
+                    </polje>
+                    <polje class="crvena">
+                        <input type="radio" name="p2"  value="2" id="p2c"><label for="p2c"></label> 
+                    </polje>
+                    <polje class="zuto">
+                        <input type="radio" name="p2"  value="3" id="p2z"><label for="p2z"></label>
+                    </polje>
+                    <div class="test2"></div>
+                </div>
+                <div id="p5">
+                    <div class="test5P">
+                        <polje class="nista">
+                            <input type="radio" name="p5" checked="checked" value="0" id="p5n"><label for="p5n"></label>
+                        </polje>
+                        <polje class="plava">
+                            <input type="radio" name="p5" value="1" id="p5p"><label for="p5p"></label> 
+                        </polje>
+                        <polje class="crvena">
+                            <input type="radio" name="p5"  value="2" id="p5c"><label for="p5c"></label> 
+                        </polje>
+                        <polje class="zuto">
+                            <input type="radio" name="p5"  value="3" id="p5z"><label for="p5z"></label>
+                        </polje>
+                    </div>
+                    <div class="test5"></div>
+                </div>
+                <div id="p1" class="margintop">
+
+                    <polje class="nista" style=" margin-left: 15px;">
+                        <input type="radio" name="p1" checked="checked" value="0" id="p1n"><label for="p1n"></label>
+                    </polje>
+                    <polje class="plava">
+                        <input type="radio" name="p1" value="1" id="p1p"><label for="p1p"></label> 
+                    </polje>
+                    <polje class="crvena">
+                        <input type="radio" name="p1"  value="2" id="p1c"><label for="p1c"></label> 
+                    </polje>
+                    <polje class="zuto">
+                        <input type="radio" name="p1"  value="3" id="p1z"><label for="p1z"></label>
+                    </polje>
+                    <div class="test1"  style="margin-left: -23px;"></div>
+                </div>
+                <div id="p3">
+                    <div class="test3"></div>
+                    <div class="test3P"> 
+                        <polje class="nista">
+                            <input type="radio" name="p3" checked="checked" value="0" id="p3n"><label for="p3n"></label>
+                        </polje>
+                        <polje class="plava">
+                            <input type="radio" name="p3" value="1" id="p3p"><label for="p3p"></label> 
+                        </polje>
+                        <polje class="crvena">
+                            <input type="radio" name="p3"  value="2" id="p3c"><label for="p3c"></label> 
+                        </polje>
+                        <polje class="zuto">
+                            <input type="radio" name="p3"  value="3" id="p3z"><label for="p3z"></label>
+                        </polje>
+                    </div>
+                </div>
+                <div id="p4">
+                    <div class="test4"></div>
+                    <polje class="nista" style="margin-left: 128px;">
+                        <input type="radio" name="p4" checked="checked" value="0" id="p4n"><label for="p4n"></label>
+                    </polje>
+                    <polje class="plava">
+                        <input type="radio" name="p4" value="1" id="p4p"><label for="p4p"></label> 
+                    </polje>
+                    <polje class="crvena">
+                        <input type="radio" name="p4"  value="2" id="p4c"><label for="p4c"></label> 
+                    </polje>
+                    <polje class="zuto">
+                        <input type="radio" name="p4"  value="3" id="p4z"><label for="p4z"></label>
+                    </polje>
+                </div>
+            </div>
+        </div>
+
+
+
+        <select id="stanje" class="form-control sirina45">
+            <option value="0">Izaberi stanje zuba</option>
+            <?php
+            foreach ($this->status as $stavke => $stavka) {
+                echo ' <option value="' . $stavka['opis'] . '">' . $stavka['opis'] . '</option>';
+            }
+            ?>
+        </select>
+
+    </form>
+
+    <button name="save" id="save" class="btn btn-primary btn-lg dugme-cuvaj-stanje" value="save">Sačuvaj</button>
+</div>
+
+<map name="planetmap">
+    <area   shape="rect" coords="7,33,47,75" class="1" alt="1" href="#1">
+    <area   shape="rect" coords="55,33,95,75" class="2" alt="2" href="#2">
+    <area   shape="rect" coords="104,33,144,75" class="3" alt="3" href="#3">
+    <area   shape="rect" coords="152,33,192,75" class="4" alt="4" href="#4">
+    <area   shape="rect" coords="201,33,241,75" class="5" alt="5" href="#5">
+    <area   shape="rect" coords="250,33,290,75" class="6" alt="6" href="#6">
+    <area   shape="rect" coords="298,33,338,75" class="7" alt="7" href="#7">
+    <area   shape="rect" coords="347,33,387,75" class="8" alt="8" href="#8">
+
+    <area   shape="rect" coords="414,33,454,75" class="9" alt="9" href="#9">
+    <area   shape="rect" coords="462,33,502,75" class="10" alt="10" href="#10">
+    <area   shape="rect" coords="511,33,551,75" class="11" alt="11" href="#11">
+    <area   shape="rect" coords="559,33,599,75" class="12" alt="12" href="#12">
+    <area   shape="rect" coords="608,33,648,75" class="13" alt="13" href="#13">
+    <area   shape="rect" coords="657,33,697,75" class="14" alt="14" href="#14">
+    <area   shape="rect" coords="705,33,745,75" class="15" alt="15" href="#15">
+    <area   shape="rect" coords="754,33,794,75" class="16" alt="16" href="#16">
+
+    <area   shape="rect" coords="7,125,47,167" class="17" alt="17" href="#17">
+    <area   shape="rect" coords="55,125,95,167" class="18" alt="18" href="#18">
+    <area   shape="rect" coords="104,125,144,167" class="19" alt="19" href="#19">
+    <area   shape="rect" coords="152,125,192,167" class="20" alt="20" href="#20">
+    <area   shape="rect" coords="201,125,241,167" class="21" alt="21" href="#21">
+    <area   shape="rect" coords="250,125,290,167" class="22" alt="22" href="#22">
+    <area   shape="rect" coords="298,125,338,167" class="23" alt="23" href="#23">
+    <area   shape="rect" coords="347,125,387,167" class="24" alt="24" href="#24">
+
+    <area   shape="rect" coords="414,125,454,167" class="25" alt="25" href="#25">
+    <area   shape="rect" coords="462,125,502,167" class="26" alt="26" href="#26">
+    <area   shape="rect" coords="511,125,551,167" class="27" alt="27" href="#27">
+    <area   shape="rect" coords="559,125,599,167" class="28" alt="28" href="#28">
+    <area   shape="rect" coords="608,125,648,167" class="29" alt="29" href="#29">
+    <area   shape="rect" coords="657,125,697,167" class="30" alt="30" href="#30">
+    <area   shape="rect" coords="705,125,745,167" class="31" alt="31" href="#31">
+    <area   shape="rect" coords="754,125,794,167" class="32" alt="32" href="#32">
+</map>
+<script type="text/javascript" src="/js/maphilight.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        jQuery(function ()
+        {
+            jQuery('#slika1').maphilight();
+        });
+        $('#karton').click(function () {
+            window.location.replace("http://zubar/pacijenti/pacijentprikaz/id/" + id);
+        });
+
+        $('input[type=radio][name=p2]').change(function () {
+            var boja = $("input:radio[name='p2']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test2').css('border-top', '50px solid #eee');
+                    break;
+                case '1':
+                    $('.test2').css('border-top', '50px solid blue');
+                    break;
+                case '2':
+                    $('.test2').css('border-top', '50px solid red');
+                    break;
+                case '3':
+                    $('.test2').css('border-top', '50px solid yellow');
+                    break;
+            }
+        });
+
+        $('input[type=radio][name=p1]').change(function () {
+            var boja = $("input:radio[name='p1']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test1').css('background-color', '#eee');
+                    break;
+                case '1':
+                    $('.test1').css('background-color', 'blue');
+                    break;
+                case '2':
+                    $('.test1').css('background-color', ' red');
+                    break;
+                case '3':
+                    $('.test1').css('background-color', 'yellow');
+                    break;
+            }
+        });
+
+        $('input[type=radio][name=p3]').change(function () {
+            var boja = $("input:radio[name='p3']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test3').css('border-right', '45px solid #eee');
+                    break;
+                case '1':
+                    $('.test3').css('border-right', '45px solid blue');
+                    break;
+                case '2':
+                    $('.test3').css('border-right', '45px solid red');
+                    break;
+                case '3':
+                    $('.test3').css('border-right', '45px solid yellow');
+                    break;
+            }
+        });
+
+        $('input[type=radio][name=p4]').change(function () {
+            var boja = $("input:radio[name='p4']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test4').css('border-bottom', '50px solid #eee');
+                    break;
+                case '1':
+                    $('.test4').css('border-bottom', '50px solid blue');
+                    break;
+                case '2':
+                    $('.test4').css('border-bottom', '50px solid red');
+                    break;
+                case '3':
+                    $('.test4').css('border-bottom', '50px solid yellow');
+                    break;
+            }
+        });
+
+        $('input[type=radio][name=p5]').change(function () {
+            var boja = $("input:radio[name='p5']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test5').css('border-left', '45px solid #eee');
+                    break;
+                case '1':
+                    $('.test5').css('border-left', '45px solid blue');
+                    break;
+                case '2':
+                    $('.test5').css('border-left', '45px solid red');
+                    break;
+                case '3':
+                    $('.test5').css('border-left', '45px solid yellow');
+                    break;
+            }
+        });
+
+
+
+        var url2 = window.location.pathname;
+        var id = url2.substring(url2.lastIndexOf('/') + 1);
+        var up = 0;
+        var zubP;
+        var zuub;
+        $('#save').click(function () {
+            if (zubP == null) {
+
+            } else {
+
+
+                var p1 = $("input:radio[name='p1']:checked").val();
+                var p2 = $("input:radio[name='p2']:checked").val();
+                var p3 = $("input:radio[name='p3']:checked").val();
+                var p4 = $("input:radio[name='p4']:checked").val();
+                var p5 = $("input:radio[name='p5']:checked").val();
+                var stanje = $("#stanje option:selected").val();
+
+                if (up == 0) {
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: 'http://zubar/pacijenti/pocetnostanjesave',
+                        async: false,
+                        data: {p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, zub: zuub, stanje: stanje, id_korisnik: id}
+
+                    });
+                } else {
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: 'http://zubar/pacijenti/pocetnostanjeupdate',
+                        async: false,
+                        data: {p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, zub: zuub, stanje: stanje, id_korisnik: id}
+
+                    });
+                }
+
+
+
+
+                // $('#p2').html(id);
+            }
+
+
+        });
+
+
+        $(document).on('mouseup', 'area', function () {
+
+
+            var data2 = $(zubP).mouseout().data('maphilight') || {};
+            data2.alwaysOn = !data2.alwaysOn;
+            $(zubP).data('maphilight', data2).trigger('alwaysOn.maphilight');
+
+
+
+            setTimeout(ukljuci, 50);
+            function ukljuci() {
+                var link = window.location.href;
+                var equalPosition = link.indexOf('#');
+                var number = link.substring(equalPosition + 1);
+                zuub = number;
+
+
+
+                var zub = '.' + number.toString();
+                zubP = zub;
+                var data = $(zub).mouseout().data('maphilight') || {};
+                data.alwaysOn = !data.alwaysOn;
+                $(zub).data('maphilight', data).trigger('alwaysOn.maphilight');
+                if ((number <= 32) || (number >= 1)) {
+                    $('.zub').css("pointer-events", "auto");
+                    $('.zub').css("display", "block");
+
+                } else {
+                    $('.zub').css("pointer-events", "none");
+                    $('.zub').css("display", "none");
+
+
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: 'http://zubar/pacijenti/pocetnostanjeprovera',
+                    async: false,
+                    data: {id_z: number, id_k: id},
+                    success: function (data) {
+                        if (data == 0) {
+                            $('form[name="delovizuba"]')[0].reset();
+                            up = 0;
+                            $('.test1').css('background-color', '#eee');
+                            $('.test2').css('border-top', '50px solid #eee');
+                            $('.test3').css('border-right', '45px solid #eee');
+                            $('.test4').css('border-bottom', '50px solid #eee');
+                            $('.test5').css('border-left', '45px solid #eee');
+
+                        } else {
+                            up = 1;
+                            $('input:radio[name=p1]')[data[0].p1].checked = true;
+                            switch (data[0].p1) {
+                                case '0':
+                                    $('.test1').css('background-color', '#eee');
+                                    break;
+                                case '1':
+                                    $('.test1').css('background-color', 'blue');
+                                    break;
+                                case '2':
+                                    $('.test1').css('background-color', ' red');
+                                    break;
+                                case '3':
+                                    $('.test1').css('background-color', 'yellow');
+                                    break;
+                            }
+                            $('input:radio[name=p2]')[data[0].p2].checked = true;
+
+                            switch (data[0].p2) {
+                                case '0':
+                                    $('.test2').css('border-top', '50px solid #eee');
+                                    break;
+                                case '1':
+                                    $('.test2').css('border-top', '50px solid blue');
+                                    break;
+                                case '2':
+                                    $('.test2').css('border-top', '50px solid red');
+                                    break;
+                                case '3':
+                                    $('.test2').css('border-top', '50px solid yellow');
+                                    break;
+                            }
+                            $('input:radio[name=p3]')[data[0].p3].checked = true;
+                            switch (data[0].p3) {
+                                case '0':
+                                    $('.test3').css('border-right', '45px solid #eee');
+                                    break;
+                                case '1':
+                                    $('.test3').css('border-right', '45px solid blue');
+                                    break;
+                                case '2':
+                                    $('.test3').css('border-right', '45px solid red');
+                                    break;
+                                case '3':
+                                    $('.test3').css('border-right', '45px solid yellow');
+                                    break;
+                            }
+                            $('input:radio[name=p4]')[data[0].p4].checked = true;
+                            switch (data[0].p4) {
+                                case '0':
+                                    $('.test4').css('border-bottom', '50px solid #eee');
+                                    break;
+                                case '1':
+                                    $('.test4').css('border-bottom', '50px solid blue');
+                                    break;
+                                case '2':
+                                    $('.test4').css('border-bottom', '50px solid red');
+                                    break;
+                                case '3':
+                                    $('.test4').css('border-bottom', '50px solid yellow');
+                                    break;
+                            }
+
+                            $('input:radio[name=p5]')[data[0].p5].checked = true;
+                            switch (data[0].p5) {
+                                case '0':
+                                    $('.test5').css('border-left', '45px solid #eee');
+                                    break;
+                                case '1':
+                                    $('.test5').css('border-left', '45px solid blue');
+                                    break;
+                                case '2':
+                                    $('.test5').css('border-left', '45px solid red');
+                                    break;
+                                case '3':
+                                    $('.test5').css('border-left', '45px solid yellow');
+                                    break;
+                            }
+                            $("#stanje option[value=" + data[0].status + "]").prop("selected", true);
+
+                        }
+
+
+
+
+
+
+
+
+                    }/*,
+                     error: function (data) {
+                     alert("Data is: " + data);
+                     //do something with data 
+                     }*/
+
+                });
+
+
+
+            }
+        });
+    });
+
+
+
+</script>

@@ -1,0 +1,756 @@
+<script>
+    $(document).ready(function () {
+
+
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+
+
+            $(this).find('.btn-ok').click(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: 'http://zubar/pacijenti/odjava',
+                    async: false,
+                    data: {id: id},
+                    success: function (data)
+                    {
+                        alert(data);
+                        $('#dugme-odjava').css('display', 'none');
+                        $('.col-lg-12').css("pointer-events", "none");
+                        $('#radovi').css("pointer-events", "auto");
+                        $('#confirm-delete').modal('hide');
+                    }
+                });
+
+            });
+
+
+
+        });
+
+
+
+
+
+        $('#zubiM').maphilight();
+        var url2 = window.location.pathname;
+        var id = url2.substring(url2.lastIndexOf('/') + 1);
+        var up = 0;
+        var zubP;
+        var zuub;
+        $('#radovi').click(function () {
+            window.location.replace("http://zubar/pacijenti/radovi/id/" + id);
+        });
+        $('#podaciZZ').click(function () {
+            window.location.replace("http://zubar/pacijenti/podacio/id/" + id);
+        });
+        $('#sacuvajOperaciju').click(function () {
+
+            var p1 = $("input:radio[name='p1']:checked").val();
+            var p2 = $("input:radio[name='p2']:checked").val();
+            var p3 = $("input:radio[name='p3']:checked").val();
+            var p4 = $("input:radio[name='p4']:checked").val();
+            var p5 = $("input:radio[name='p5']:checked").val();
+            var stanje = $("#stanje option:selected").val();
+            var rad = $("#rad option:selected").val();
+            var opis = $("#opis").val();
+            var naplata = 1;
+            if ($("#naplata").is(':checked')) {
+                naplata = 0;
+            }
+
+
+            if (stanje == 0 || rad == 0) {
+                alert("Morate izabrati stanje i rad");
+            } else {
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: 'http://zubar/pacijenti/radsave',
+                    async: false,
+                    data: {p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, zub: zuub, stanje: stanje, id_korisnik: id, rad: rad, opis: opis, naplata: naplata},
+                    success: function (data)
+                    {
+
+                        $('.test1').css('background-color', '#eee');
+                        $('.test2').css('border-top', '50px solid #eee');
+                        $('.test3').css('border-right', '45px solid #eee');
+                        $('.test4').css('border-bottom', '50px solid #eee');
+                        $('.test5').css('border-left', '45px solid #eee');
+                        $("#stanje").prop('selectedIndex', 0);
+                        $("#rad").prop('selectedIndex', 0);
+                        $("input[type=radio]").prop('checked', function () {
+                            return this.getAttribute('checked') == 'checked';
+                        });
+                        $("#opis").val('');
+                        $('#unos_rad').css("pointer-events", "none");
+                        $('#unos_rad').css("opacity", "0.4");
+                        var data = $(zubP).mouseout().data('maphilight') || {};
+                        data.alwaysOn = !data.alwaysOn;
+                        $(zubP).data('maphilight', data).trigger('alwaysOn.maphilight');
+                        zubP = null;
+                        alert("Uspesno ste uneli");
+                    },
+                    error: function (data)
+                    {
+                        alert("Greska");
+                    }
+                });
+            }
+
+        });
+        $(document).on('mouseup', 'area', function () {
+
+
+            var data2 = $(zubP).mouseout().data('maphilight') || {};
+            data2.alwaysOn = !data2.alwaysOn;
+            $(zubP).data('maphilight', data2).trigger('alwaysOn.maphilight');
+            setTimeout(ukljuci, 50);
+            function ukljuci() {
+                var link = window.location.href;
+                var equalPosition = link.indexOf('#');
+                var number = link.substring(equalPosition + 1);
+                zuub = number;
+                var zub = '.' + number.toString();
+                zubP = zub;
+                var data = $(zub).mouseout().data('maphilight') || {};
+                data.alwaysOn = !data.alwaysOn;
+                $(zub).data('maphilight', data).trigger('alwaysOn.maphilight');
+                if ((number <= 32) || (number >= 1)) {
+                    $('#unos_rad').css("pointer-events", "auto");
+                    $('#unos_rad').css("opacity", "1");
+                } else {
+                    $('#unos_rad').css("pointer-events", "none");
+                    $('#unos_rad').css("opacity", "0.4");
+                }
+            }
+
+
+
+        });
+        $('input[type=radio][name=p2]').change(function () {
+            var boja = $("input:radio[name='p2']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test2').css('border-top', '50px solid #eee');
+                    break;
+                case '1':
+                    $('.test2').css('border-top', '50px solid blue');
+                    break;
+                case '2':
+                    $('.test2').css('border-top', '50px solid red');
+                    break;
+                case '3':
+                    $('.test2').css('border-top', '50px solid yellow');
+                    break;
+            }
+        });
+        $('input[type=radio][name=p1]').change(function () {
+            var boja = $("input:radio[name='p1']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test1').css('background-color', '#eee');
+                    break;
+                case '1':
+                    $('.test1').css('background-color', 'blue');
+                    break;
+                case '2':
+                    $('.test1').css('background-color', ' red');
+                    break;
+                case '3':
+                    $('.test1').css('background-color', 'yellow');
+                    break;
+            }
+        });
+        $('input[type=radio][name=p3]').change(function () {
+            var boja = $("input:radio[name='p3']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test3').css('border-right', '45px solid #eee');
+                    break;
+                case '1':
+                    $('.test3').css('border-right', '45px solid blue');
+                    break;
+                case '2':
+                    $('.test3').css('border-right', '45px solid red');
+                    break;
+                case '3':
+                    $('.test3').css('border-right', '45px solid yellow');
+                    break;
+            }
+        });
+        $('input[type=radio][name=p4]').change(function () {
+            var boja = $("input:radio[name='p4']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test4').css('border-bottom', '50px solid #eee');
+                    break;
+                case '1':
+                    $('.test4').css('border-bottom', '50px solid blue');
+                    break;
+                case '2':
+                    $('.test4').css('border-bottom', '50px solid red');
+                    break;
+                case '3':
+                    $('.test4').css('border-bottom', '50px solid yellow');
+                    break;
+            }
+        });
+        $('input[type=radio][name=p5]').change(function () {
+            var boja = $("input:radio[name='p5']:checked").val();
+            switch (boja) {
+                case '0':
+                    $('.test5').css('border-left', '45px solid #eee');
+                    break;
+                case '1':
+                    $('.test5').css('border-left', '45px solid blue');
+                    break;
+                case '2':
+                    $('.test5').css('border-left', '45px solid red');
+                    break;
+                case '3':
+                    $('.test5').css('border-left', '45px solid yellow');
+                    break;
+            }
+        });
+        $('#openNav').click(function () {
+            document.getElementById("myNav").style.width = "100%";
+            $('.test1').css('background-color', '#eee');
+            $('.test2').css('border-top', '50px solid #eee');
+            $('.test3').css('border-right', '45px solid #eee');
+            $('.test4').css('border-bottom', '50px solid #eee');
+            $('.test5').css('border-left', '45px solid #eee');
+            $("#stanje").prop('selectedIndex', 0);
+            $("#rad").prop('selectedIndex', 0);
+            $("input[type=radio]").prop('checked', function () {
+                return this.getAttribute('checked') == 'checked';
+            });
+            $("#opis").val('');
+            $('#unos_rad').css("pointer-events", "none");
+            $('#unos_rad').css("opacity", "0.4");
+        });
+        $(document).on('keydown', function (e) {
+            if (e.keyCode === 27) {
+                document.getElementById("myNav").style.width = "0%";
+            }
+        });
+
+
+        $('#openNav2').click(function () {
+            document.getElementById("myNav2").style.width = "82%";
+        });
+        $('.closebtn2').click(function () {
+            document.getElementById("myNav2").style.width = "0%";
+        });
+
+
+
+        $('.closebtn').click(function () {
+            var data3 = $(zubP).mouseout().data('maphilight') || {};
+            data3.alwaysOn = !data3.alwaysOn;
+            $(zubP).data('maphilight', data3).trigger('alwaysOn.maphilight');
+            document.getElementById("myNav").style.width = "0%";
+            // location.reload();--moglo bi preko ajax
+        });
+        Webcam.set({
+            width: 300,
+            height: 200,
+            dest_width: 640,
+            dest_height: 480,
+            image_format: 'jpeg',
+            jpeg_quality: 90,
+            force_flash: false,
+            flip_horiz: true,
+            fps: 45
+        });
+
+
+
+
+        Webcam.on('error', function () {
+            $('#slikakorisnikfile').trigger('click');
+        });
+        $('#slikaj').click(function () {
+            Webcam.snap(function (data_uri) {
+                Webcam.upload(data_uri, 'http://zubar/pacijenti/slikasave/id/' + id, function (code, text) {
+                    alert('save');
+                    $('#pacijent-slika').attr('src', data_uri);
+                    otkazi();
+                });
+            });
+        });
+        $('#pacijent-slika').click(function () {
+            $('#pacijent-slika').css('display', 'none');
+            Webcam.attach('#my_camera');
+            $('#my_camera').css('display', 'block');
+            $('#otkazi').css('display', 'inline');
+            $('#slikaj').css('display', 'inline');
+            $('#dodaj').css('display', 'inline');
+        });
+        $('#otkazi').click(function () {
+            otkazi();
+        });
+        $('#dodaj').click(function () {
+            $('#slikakorisnikfile').trigger('click');
+        });
+        var inputfile = $("#slikakorisnikfile");
+        inputfile.on("change click", function (ev) {
+            $('#slikaj').css('display', 'none');
+            if (ev.originalEvent != null) {
+                var ext = $('#slikakorisnikfile').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                    alert('invalid extension!');
+                } else {
+
+                    var formData = new FormData();
+                    formData.append('file', $('#slikakorisnikfile')[0].files[0]);
+                    $.ajax({
+                        url: 'http://zubar/pacijenti/slikasave2/id/' + id,
+                        type: 'POST',
+                        data: formData,
+                        processData: false, // tell jQuery not to process the data
+                        contentType: false, // tell jQuery not to set contentType
+                        success: function (data) {
+
+                            location.reload();
+                        }
+                    });
+                }
+
+            }
+            document.body.onfocus = function () {
+                document.body.onfocus = null;
+                setTimeout(function () {
+                    if (inputfile.val().length === 0)
+                        otkazi();
+                }, 100);
+            };
+        });
+        function otkazi() {
+            $('#pacijent-slika').css('display', 'block');
+            $('#my_camera').css('display', 'none');
+            $('#otkazi').css('display', 'none');
+            $('#slikaj').css('display', 'none');
+            $('#dodaj').css('display', 'none');
+        }
+
+
+    });</script>
+
+<map name="planetmap">
+    <area   shape="rect" coords="7,33,47,75" class="1" alt="1" href="#1">
+    <area   shape="rect" coords="55,33,95,75" class="2" alt="2" href="#2">
+    <area   shape="rect" coords="104,33,144,75" class="3" alt="3" href="#3">
+    <area   shape="rect" coords="152,33,192,75" class="4" alt="4" href="#4">
+    <area   shape="rect" coords="201,33,241,75" class="5" alt="5" href="#5">
+    <area   shape="rect" coords="250,33,290,75" class="6" alt="6" href="#6">
+    <area   shape="rect" coords="298,33,338,75" class="7" alt="7" href="#7">
+    <area   shape="rect" coords="347,33,387,75" class="8" alt="8" href="#8">
+
+    <area   shape="rect" coords="414,33,454,75" class="9" alt="9" href="#9">
+    <area   shape="rect" coords="462,33,502,75" class="10" alt="10" href="#10">
+    <area   shape="rect" coords="511,33,551,75" class="11" alt="11" href="#11">
+    <area   shape="rect" coords="559,33,599,75" class="12" alt="12" href="#12">
+    <area   shape="rect" coords="608,33,648,75" class="13" alt="13" href="#13">
+    <area   shape="rect" coords="657,33,697,75" class="14" alt="14" href="#14">
+    <area   shape="rect" coords="705,33,745,75" class="15" alt="15" href="#15">
+    <area   shape="rect" coords="754,33,794,75" class="16" alt="16" href="#16">
+
+    <area   shape="rect" coords="7,125,47,167" class="17" alt="17" href="#17">
+    <area   shape="rect" coords="55,125,95,167" class="18" alt="18" href="#18">
+    <area   shape="rect" coords="104,125,144,167" class="19" alt="19" href="#19">
+    <area   shape="rect" coords="152,125,192,167" class="20" alt="20" href="#20">
+    <area   shape="rect" coords="201,125,241,167" class="21" alt="21" href="#21">
+    <area   shape="rect" coords="250,125,290,167" class="22" alt="22" href="#22">
+    <area   shape="rect" coords="298,125,338,167" class="23" alt="23" href="#23">
+    <area   shape="rect" coords="347,125,387,167" class="24" alt="24" href="#24">
+
+    <area   shape="rect" coords="414,125,454,167" class="25" alt="25" href="#25">
+    <area   shape="rect" coords="462,125,502,167" class="26" alt="26" href="#26">
+    <area   shape="rect" coords="511,125,551,167" class="27" alt="27" href="#27">
+    <area   shape="rect" coords="559,125,599,167" class="28" alt="28" href="#28">
+    <area   shape="rect" coords="608,125,648,167" class="29" alt="29" href="#29">
+    <area   shape="rect" coords="657,125,697,167" class="30" alt="30" href="#30">
+    <area   shape="rect" coords="705,125,745,167" class="31" alt="31" href="#31">
+    <area   shape="rect" coords="754,125,794,167" class="32" alt="32" href="#32">
+</map>
+<script type="text/javascript" src="/js/maphilight.js"></script>
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+<script src="/webcamjs-master/webcam.js"></script>
+
+
+
+
+
+
+
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn">×</a>
+    <div class="overlay-content">
+
+        <div id="zubi"><img src="/img/zubi-mali.png" id="zubiM" usemap="#planetmap"/></div>
+        <div id="unos_rad">
+            <div id="levo_unos">
+
+                <div class="form-group">
+
+                    <select class="form-control sirina45" id="rad">
+                        <option value="0">Izaberi vrstu sanacije</option>
+                        <?php
+                        foreach ($this->radovi as $stavke => $stavka) {
+                            echo ' <option value="' . $stavka['id'] . '">' . $stavka['opis'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <select class="form-control sirina45" id="stanje">
+                        <option value="0">Izaberi stanje zuba</option>
+                        <?php
+                        foreach ($this->status as $stavke => $stavka) {
+                            echo ' <option value="' . $stavka['opis'] . '">' . $stavka['opis'] . '</option>';
+                        }
+                        ?>
+                    </select>
+
+                </div>                
+
+                <textarea class="form-control unosarea" id="opis" rows="10" placeholder="Opis..."></textarea>
+                <input type="checkbox" id="naplata" value="Sakrij">Sakrij</input>
+                <button class="btn btn-primary btn-lg margintop" id="sacuvajOperaciju">Sačuvaj</button>
+            </div>
+            <div id="desno_unos">
+
+                <div id="povrsine">
+                    <div id="p2">
+                        <polje class="nista">
+
+                            <input type="radio" name="p2" checked="checked" value="0" id="p2n"><label for="p2n"></label>
+                        </polje>
+                        <polje class="plava">
+                            <input type="radio" name="p2" value="1" id="p2p"><label for="p2p"></label> 
+                        </polje>
+                        <polje class="crvena">
+                            <input type="radio" name="p2"  value="2" id="p2c"><label for="p2c"></label> 
+                        </polje>
+                        <polje class="zuto">
+                            <input type="radio" name="p2"  value="3" id="p2z"><label for="p2z"></label>
+                        </polje>
+                        <div class="test2"></div>
+                    </div>
+                    <div id="p5">
+                        <div class="test5P">
+                            <polje class="nista">
+                                <input type="radio" name="p5" checked="checked" value="0" id="p5n"><label for="p5n"></label>
+                            </polje>
+                            <polje class="plava">
+                                <input type="radio" name="p5" value="1" id="p5p"><label for="p5p"></label> 
+                            </polje>
+                            <polje class="crvena">
+                                <input type="radio" name="p5"  value="2" id="p5c"><label for="p5c"></label> 
+                            </polje>
+                            <polje class="zuto">
+                                <input type="radio" name="p5"  value="3" id="p5z"><label for="p5z"></label>
+                            </polje></div>
+                        <div class="test5"></div>
+                    </div>
+                    <div id="p1" class="margintop">
+
+                        <polje class="nista">
+                            <input type="radio" name="p1" checked="checked" value="0" id="p1n"><label for="p1n"></label>
+                        </polje>
+                        <polje class="plava">
+                            <input type="radio" name="p1" value="1" id="p1p"><label for="p1p"></label> 
+                        </polje>
+                        <polje class="crvena">
+                            <input type="radio" name="p1"  value="2" id="p1c"><label for="p1c"></label> 
+                        </polje>
+                        <polje class="zuto">
+                            <input type="radio" name="p1"  value="3" id="p1z"><label for="p1z"></label>
+                        </polje>
+                        <div class="test1"></div>
+                    </div>
+                    <div id="p3">
+                        <div class="test3"></div>
+                        <div class="test3P"> 
+                            <polje class="nista">
+                                <input type="radio" name="p3" checked="checked" value="0" id="p3n"><label for="p3n"></label>
+                            </polje>
+                            <polje class="plava">
+                                <input type="radio" name="p3" value="1" id="p3p"><label for="p3p"></label> 
+                            </polje>
+                            <polje class="crvena">
+                                <input type="radio" name="p3"  value="2" id="p3c"><label for="p3c"></label> 
+                            </polje>
+                            <polje class="zuto">
+                                <input type="radio" name="p3"  value="3" id="p3z"><label for="p3z"></label>
+                            </polje>
+                        </div>
+                    </div>
+                    <div id="p4">
+                        <div class="test4"></div>
+                        <polje class="nista">
+                            <input type="radio" name="p4" checked="checked" value="0" id="p4n"><label for="p4n"></label>
+                        </polje>
+                        <polje class="plava">
+                            <input type="radio" name="p4" value="1" id="p4p"><label for="p4p"></label> 
+                        </polje>
+                        <polje class="crvena">
+                            <input type="radio" name="p4"  value="2" id="p4c"><label for="p4c"></label> 
+                        </polje>
+                        <polje class="zuto">
+                            <input type="radio" name="p4"  value="3" id="p4z"><label for="p4z"></label>
+                        </polje>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-default top-mar">
+
+
+    <div class="panel-heading" style=" text-align: center;">
+        <?php
+        foreach ($this->pregled as $stavke => $stavka) {
+            ?>
+            <p class="imeprezimenaslov">
+                <?php
+                echo $stavka['ime'] . " " . $stavka['prezime'];
+                ?>
+            </p>
+            <div class="col-lg-4 slika-profil"><div id="my_camera"></div>
+                <img id="pacijent-slika"
+                <?php
+                $kod = $stavka['odjava_kod'];
+                if ($stavka['slika'] == null) {
+                    echo 'class="slika-dugme avatar-profil-resize"';
+                    echo 'src="/img/no-profile-img.gif"';
+                } else {
+                    echo 'class="slika-dugme slika-profil-resize"';
+                    echo 'src="/' . $stavka['slika'] . '"';
+                }
+                ?> width="180" />
+                <button class="btn btn-outline btn-primary" id="slikaj">Slikaj</button>
+                <button class="btn btn-outline btn-success" id="dodaj">Dodaj</button>
+                <button class="btn btn-outline btn-danger" id="otkazi">Otkaži</button>
+                <input type="file" id="slikakorisnikfile" />
+            </div>
+            <div class="col-lg-8 margintop">
+                <div class="border-bottom-siva">
+                    <div class="col-lg-4 red1-pacijet"> 
+                        <div><i class="fa fa-envelope-o fa-3x" title="Email"> </i></div>
+                        <div>
+                            <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+                                <?php
+                                echo $stavka['email'];
+                                ?>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-lg-4 red1-pacijet">
+                        <i class="fa fa-phone-square fa-3x" title="Mobilni telefon"></i>
+                        <div>
+
+                            <?php
+                            echo $stavka['mobilni'];
+                            ?> 
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 red1-pacijet">
+                        <i class="fa fa-location-arrow fa-3x" title="Adresa stanovanja"></i>
+                        <p>
+                            <?php
+                            echo $stavka['adresa'];
+                            ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="border-bottom-siva">
+                    <div class="col-lg-6 red2-pacijent">
+                        <i class="fa fa-exclamation fa-4x" title="Medicinska upozorenja"></i>
+                        <p> 
+                            <?php
+                            echo $stavka['upozorenja'];
+                            ?>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 red2-pacijent">
+                        <i class="fa fa-ambulance fa-4x" title="Znacajnija oboljenja i stanja"></i>
+                        <p> 
+                            <?php
+                            echo $stavka['oboljenja'];
+                            ?>
+                        </p>
+                    </div> 
+
+                    <?php
+                }
+                ?>
+
+            </div>
+        </div>
+        <div class="col-lg-12 margintop">
+
+            <a href="/pacijenti/pocetnistatus/id/<?php echo $stavka['id']; ?>"><button class="btn btn-outline btn-primary btn-lg">Pocetno stanje</button></a>
+            </br>
+            <?php
+            $brojevi = array();
+            for ($i = 1; $i <= 32; $i++) {
+                $brojevi[$i] = array('00000', 'Z');
+            }
+            foreach ($this->pocetnistatus as $stavke => $stavka) {
+                $brojevi[$stavka['id_zub']][0] = $stavka['slika_zub'];
+                $brojevi[$stavka['id_zub']][1] = $stavka['status'];
+            }
+            for ($i = 1; $i <= 32; $i++) {
+                if (($i >= 6 && $i <= 11) || ($i >= 22 && $i <= 27)) {
+                    $size = 'class="zubprikaz-mali"';
+                } else {
+                    if (($i >= 4 && $i <= 5) || ($i >= 12 && $i <= 13) || ($i >= 20 && $i <= 21) || ($i >= 28 && $i <= 29)) {
+                        $size = 'class="zubprikaz-srednji"';
+                    } else {
+                        $size = "";
+                    }
+                }
+
+                if ($i == 9) {
+                    echo '<div class="linija-izmedju-zuba"></div>';
+                }
+
+                if ($i == 17) {
+                    echo'</br>';
+                }
+
+                if ($i <= 16) {
+                    echo '<div class="zubi-razmak"><p> ' . $brojevi[$i][1] . '</p><img ' . $size . ' src="/img/zubi/' . $brojevi[$i][0] . '.png"/></div>';
+                } else {
+                    echo '<div class="zubi-razmak"><img ' . $size . ' src="/img/zubi/' . $brojevi[$i][0] . '.png"/><p> ' . $brojevi[$i][1] . '</p></div>';
+                }
+            }
+            ?>
+
+        </div>
+
+        <div class="col-lg-12 margintop">
+            <p></p>
+            <?php
+            $brojevi = array();
+            for ($i = 1; $i <= 32; $i++) {
+                $brojevi[$i] = array('00000', '&nbsp');
+            }
+            foreach ($this->stanjeizoperacija as $stavke => $stavka) {
+                $brojevi[$stavka['id_zub']][0] = $stavka['p1'] . $stavka['p2'] . $stavka['p3'] . $stavka['p4'] . $stavka['p5'];
+                $brojevi[$stavka['id_zub']][1] = $stavka['stanje'];
+            }
+            for ($i = 1; $i <= 32; $i++) {
+
+                if (($i >= 6 && $i <= 11) || ($i >= 22 && $i <= 27)) {
+                    $size = 'class="zubprikaz-mali"';
+                } else {
+                    if (($i >= 4 && $i <= 5) || ($i >= 12 && $i <= 13) || ($i >= 20 && $i <= 21) || ($i >= 28 && $i <= 29)) {
+                        $size = 'class="zubprikaz-srednji"';
+                    } else {
+                        $size = "";
+                    }
+                }
+                if ($i == 9) {
+                    echo '<div class="linija-izmedju-zuba"></div>';
+                }
+
+
+                if ($i == 17) {
+                    echo'</br>';
+                }
+
+                if ($i <= 16) {
+                    echo '<div class="zubi-razmak"><p> ' . $brojevi[$i][1] . '</p><img ' . $size . ' src="/img/zubi/' . $brojevi[$i][0] . '.png"/></div>';
+                } else {
+
+                    echo '<div class="zubi-razmak"><img ' . $size . ' src="/img/zubi/' . $brojevi[$i][0] . '.png"/><p> ' . $brojevi[$i][1] . '</p></div>';
+                }
+            }
+            ?>
+            <div>
+                <button class="btn btn-outline btn-primary btn-lg" id="openNav">Dodaj operaciju</button>
+                <button class="btn btn-outline btn-primary btn-lg" id="radovi">Radovi</button>
+                <button class="btn btn-outline btn-primary btn-lg" id="podaciZZ">Podaci korisnika</button>
+                <a href="/pacijenti/editpacijent/id/<?php echo $this->pregled[0]['id']; ?>"><button class="btn btn-outline btn-primary btn-lg" id="podaciZZ">Izmeni podatke pacijenta</button></a>
+
+
+                <?php
+                if ($kod == "") {
+                    ?>
+
+                    <button class="btn btn-danger btn-primary btn-lg" href="#" data-toggle="modal" id="dugme-odjava" data-target="#confirm-delete">
+                        Odjava pacijenta
+                    </button>
+
+                    <?php
+                } else {
+                    echo "Kod odjave pacijenta: " . $kod;
+                    ?>
+                    <script>
+    $(document).ready(function () {
+        $('.col-lg-12').css("pointer-events", "none");
+        $('#radovi').css("pointer-events", "auto");
+    });
+                    </script>
+                    <?php
+                }
+                ?>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Odjava pacijenta
+            </div>
+            <div class="modal-body">
+                Ovim odjavljujete karton pacijenta iz vaše ordinacije i dobijate migracioni kod
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Otkaži</button>
+                <a class="btn btn-primary btn-ok" >Odjavi</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

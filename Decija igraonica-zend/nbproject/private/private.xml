@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Signin.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/AdminController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/KontaktController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Aktivnost.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Zakazivanje.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Signin.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Korisnik.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/IndexController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Kontakt.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Komentar.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Cena.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Slike.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/UlazController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Cena.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/CenovnikController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/ErrorController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/ZakaziController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Komentar.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/controllers/AktivnostiController.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Zakazi.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/forms/Login.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Slike.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/configs/application.ini</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/ChangeImage.php</file>
+            <file>file:/C:/xampp/htdocs/zend/application/layouts/scripts/layout.phtml</file>
+            <file>file:/C:/xampp/htdocs/zend/application/models/Aktivnost.php</file>
+        </group>
+    </open-files>
+</project-private>

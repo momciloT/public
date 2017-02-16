@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="/clndr.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="/js/clndr.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $('#default').clndr({
+            template: $('#calendar-template').html(),
+            weekOffset: 1,
+            daysOfTheWeek: ['Nedelja', 'Ponedeljak', 'Utorak', 'Sreda', 'Četvrtak', 'Petak', 'Subota']
+        });
+
+        $('#btn-chat').click(function () {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'http://zubar/ordinacija/podsetnikunos',
+                async: false,
+                data: {podsetnik: $('#btn-input').val()},
+                success: function (data)
+                {
+                    var date = new Date();
+                    (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()
+                    $('.chat').prepend('<li class="left"><div class="chat-body"><div class="header"><small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i>' + date.getFullYear()  + '-' + (date.getMonth() + 1)  + '-' + date.getDate() + '</small> </div>  <p>' + data + ' </p> </div> </li>');
+                    $('#btn-input').val('');
+                },
+                error: function (data) {
+                    $('#btn-input').val('asdasd');
+                }
+            });
+
+
+        });
+
+
+    });
+
+
+
+</script>
+
+<div class="chat-panel panel panel-default podsetnik">
+    <div class="panel-heading">
+        <i class="fa fa-sticky-note fa-fw"></i>
+        Podsetnik
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <ul class="chat">
+            <?php
+            foreach ($this->podsetnik as $stavke => $stavka) {
+              
+                ?>
+                <li class="left">
+                    <div class="chat-body">
+                        <div class="header">
+
+                            <small class="pull-right text-muted">
+                                <i class="fa fa-clock-o fa-fw"></i> <?php echo substr($stavka['datum'], 0, 10); ?>
+                            </small>
+                        </div>
+                        <p>
+                            <?php echo $stavka['text']; ?>
+                        </p>
+                    </div>
+                </li>
+                <?php
+            
+            }
+            ?>
+
+
+
+
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <div class="input-group">
+            <input id="btn-input" type="text" class="form-control input-sm"  placeholder="Podsetnik..." />
+            <span class="input-group-btn">
+                <button class="btn btn-primary btn-sm" id="btn-chat">
+                    Zapamti
+                </button>
+            </span>
+        </div>
+    </div>
+    <!-- /.panel-footer -->
+</div>
+
+
+
+<div id="default" class="cal1"></div>

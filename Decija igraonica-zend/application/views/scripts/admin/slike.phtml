@@ -1,0 +1,36 @@
+<?php echo $this->status; ?>
+<?php echo $this->formaslike; ?>
+
+
+<table class="table table-bordered table-hover tablestriped tablesorter">
+    <tr>
+        <th>
+            <i> ID </i>
+        </th>
+        <th>
+            <i> Putanja </i>
+        </th>
+        <th>
+            <i> Obriši </i>
+        </th>
+    </tr>
+    <?php
+    foreach ($this->dohvati_slike as $ds) {
+        echo '<tr>';
+        echo '<td>';
+        echo $ds['id'];
+        echo '</td>';
+        echo '<td>';
+        echo $ds['putanja'];
+        echo '</td>';
+        echo '<td>';
+        echo '<a href="/admin/obslike/id/' . $ds['id'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Delete</a>';
+        echo '</td>';
+
+        echo '</tr>';
+    }
+    ?>
+</table>
+</div>
+</div>

@@ -1,0 +1,284 @@
+<script>
+   
+    $(document).ready(function () {
+
+        $('#obrisiOperaciju').click(function () {
+            var href = $(this).attr('href');
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'http://zubar/pacijenti/obrisioperaciju',
+                async: false,
+                data: {ido: href},
+                success: function (data)
+                {
+                    alert('Uspesno obrisano');
+                    location.reload();
+                },
+                error: function () {
+                    alert('Doslo je do greške, osvežite stranu i pokušajte ponovo');
+                }
+            });
+
+        });
+
+        $(document).on('keydown', function (e) {
+            if (e.keyCode === 27) {
+                document.getElementById("myNav").style.width = "0%";
+            }
+        });
+
+
+        var link1 = window.location.href;
+        var equalPosition1 = link1.indexOf('id/');
+        var id = link1.substring(equalPosition1 + 3);
+        $('#karton').click(function () {
+            window.location.replace("http://zubar/pacijenti/pacijentprikaz/id/" + id);
+        });
+        $('#example').DataTable({
+            "language": {
+                "lengthMenu": "Prikaži po strani _MENU_",
+                "zeroRecords": "Traženi pojam ne postoji",
+                "info": "Strana _PAGE_ od _PAGES_",
+                "infoEmpty": "Nema traženih podataka",
+                "infoFiltered": "(Pretraženo _MAX_ zapisa)",
+                "search": "Pretraži"
+            }
+        });
+
+
+
+
+        $(document).on("click", ".openNav", function () {
+
+
+            document.getElementById("myNav").style.width = "100%";
+
+            var href = $(this).attr('href');
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'http://zubar/pacijenti/operacijadetaljno',
+                async: false,
+                data: {id: href},
+                success: function (data)
+                {
+                    $("#obrisiOperaciju").attr("href", href);
+                    $("#zubiM").attr("src", "/img/zubi-mali-" + data[0].id_zub + ".png");
+                    $('#datumOperacije').text('Datum : ' + data[0].datum);
+                    $('#opis').text('Opis : ' + data[0].opis);
+                    $("#stanje").text('Stanje : ' + data[0].status);
+                    $("#rad").text('Rad : ' + data[0].radOpis);
+                    switch (data[0].p1) {
+                        case '0':
+                            $('.test1').css('background-color', '#eee');
+                            break;
+                        case '1':
+                            $('.test1').css('background-color', 'blue');
+                            break;
+                        case '2':
+                            $('.test1').css('background-color', ' red');
+                            break;
+                        case '3':
+                            $('.test1').css('background-color', 'yellow');
+                            break;
+                    }
+
+
+                    switch (data[0].p2) {
+                        case '0':
+                            $('.test2').css('border-top', '50px solid #eee');
+                            break;
+                        case '1':
+                            $('.test2').css('border-top', '50px solid blue');
+                            break;
+                        case '2':
+                            $('.test2').css('border-top', '50px solid red');
+                            break;
+                        case '3':
+                            $('.test2').css('border-top', '50px solid yellow');
+                            break;
+                    }
+
+                    switch (data[0].p3) {
+                        case '0':
+                            $('.test3').css('border-right', '45px solid #eee');
+                            break;
+                        case '1':
+                            $('.test3').css('border-right', '45px solid blue');
+                            break;
+                        case '2':
+                            $('.test3').css('border-right', '45px solid red');
+                            break;
+                        case '3':
+                            $('.test3').css('border-right', '45px solid yellow');
+                            break;
+                    }
+
+                    switch (data[0].p4) {
+                        case '0':
+                            $('.test4').css('border-bottom', '50px solid #eee');
+                            break;
+                        case '1':
+                            $('.test4').css('border-bottom', '50px solid blue');
+                            break;
+                        case '2':
+                            $('.test4').css('border-bottom', '50px solid red');
+                            break;
+                        case '3':
+                            $('.test4').css('border-bottom', '50px solid yellow');
+                            break;
+                    }
+
+
+                    switch (data[0].p5) {
+                        case '0':
+                            $('.test5').css('border-left', '45px solid #eee');
+                            break;
+                        case '1':
+                            $('.test5').css('border-left', '45px solid blue');
+                            break;
+                        case '2':
+                            $('.test5').css('border-left', '45px solid red');
+                            break;
+                        case '3':
+                            $('.test5').css('border-left', '45px solid yellow');
+                            break;
+                    }
+
+
+                },
+                error: function (data)
+                {
+                    alert("Greska");
+                }
+            });
+
+        });
+        $('.closebtn').click(function () {
+
+            document.getElementById("myNav").style.width = "0%";
+        });
+    });</script>   
+
+<link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn">×</a>
+    <div class="overlay-content">
+
+        <div id="zubi"><img src="/img/zubi-mali.png" id="zubiM" usemap="#planetmap"/></div>
+
+        <div id="levo_unos">
+           
+            <ul>
+                <li id="stanje"></li>
+                <li id="rad"></li>
+                <li id="opis"></li>
+                <li id="datumOperacije"></li>
+            </ul>
+<?php
+if($this->kod!=99){
+    echo '<button class="btn btn-primary btn-lg margintop"  id="obrisiOperaciju">Obriši</button>';
+}
+?>
+            
+        </div>
+        <div id="desno_unos">
+
+            <div id="povrsine">
+                <div id="p2">
+                    <div class="test2"></div>
+                </div>
+                <div id="p5">
+                    <div class="test5P">
+                    </div>
+                    <div class="test5" style="margin-top: -70px;"></div>
+                </div>
+                <div id="p1" class="margintop">
+                    <div class="test1" style="margin-top: -38px;"></div>
+                </div>
+                <div id="p3">
+                    <div class="test3" style="margin-top: -70px;"></div>
+                    <div class="test3P"> 
+                    </div>
+                </div>
+                <div id="p4">
+                    <div class="test4" style="margin-top: 3px;"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<button class="btn btn-outline btn-primary" id="karton">Nazad na karton</button>
+<i class="fa fa-print fa-3x" title="Štampaj"></i>
+<div class="col-lg-12 red3-pacijent">
+    Lista radova
+
+
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Površine</th>
+                <th>Opis</th>
+                <th>Datum</th> 
+                <th>Detaljnije</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Površine</th>
+                <th>Opis</th>
+                <th>Datum</th> 
+                <th>Detaljnije</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php
+            foreach ($this->radovi as $radovi => $rad) {
+                ?>
+                <tr>
+
+                    <td>
+                        <?php
+                        echo '<img src="/img/zubi/' . $rad['p1'] . $rad['p2'] . $rad['p3'] . $rad['p4'] . $rad['p5'] . '.png"/>';
+                        ?>
+
+                    </td>
+                    <td><?php
+                    echo $rad['opis'];
+                        ?>
+                    </td>
+                    <td >
+                        <?php
+                        echo $rad['datum'];
+                        ?>
+                    </td>
+                    <td><button type="button" class="btn btn-primary openNav" href="<?php print $rad['id']; ?>">Detaljnije</button></td>
+
+                </tr>
+
+
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+<?php
+
+
+
+?>

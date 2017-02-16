@@ -1,0 +1,86 @@
+<?php echo $this->form; ?>
+<table class="table table-bordered table-hover tablestriped tablesorter">
+    <tr>
+        <th>
+            <i>Naziv aktivnosti</i>
+        </th>
+        <th>
+            <i> Opis </i>
+        </th>
+        <th>
+            <i> Termin </i>
+        </th>
+        <th>
+            <i> Obriši </i>
+        </th>
+        <th>
+            <i>Izmeni </i>
+        </th>
+    </tr>
+    <?php
+    foreach ($this->dohvati_aktivnosti as $ds) {
+        echo '<tr>';
+        echo '<td class="naziv_aktivnosti">';
+        echo $ds['ime'];
+        echo '</td>';
+        echo '<td class="opis_aktivnosti">';
+        echo $ds['opis'];
+        echo '</td>';
+        echo '<td class="termin">';
+        echo $ds['termin'];
+        echo '</td>';
+        echo '<td>';
+        echo '<a href="/admin/obaktivnost/id/' . $ds['id'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Obriši</a>';
+        echo '</td>';
+        echo '<td>';
+        echo '<a class="edit" href="javascript:void(0);">Izmeni</a> <button class="save" style="display:none;" id="save_'.$ds['id'].'">Zapamti</button>';
+        echo '</td>';
+
+        echo '</tr>';
+    }
+    ?>
+</table>
+</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $('.edit').click(function(){
+        $(this).hide();
+        $(this).parent().find(".save").show();
+        
+        var naziv = $(this).parent().parent().find('.naziv_aktivnosti');
+        var opis = $(this).parent().parent().find('.opis_aktivnosti');
+        var termin = $(this).parent().parent().find('.termin');
+        
+        naziv.html('<textarea name="naziv" class="naziv_aktivnosti" style="width:100%;height:100px;">'+naziv.html()+'</textarea>');
+        opis.html('<textarea name="opis" class="opis_aktivnosti" style="width:100%;height:100px;">'+opis.html()+'</textarea>');
+        termin.html('<textarea name="termin" class="termin" style="width:100%;height:100px;">'+termin.html()+'</textarea>');
+    });
+    
+    $('.save').click(function(){
+        var save = $(this);
+        var naziv = $(this).parent().parent().find('.naziv_aktivnosti');
+        var opis = $(this).parent().parent().find('.opis_aktivnosti');
+        var termin = $(this).parent().parent().find('.termin');
+        
+        var id = save.attr('id').split('_');
+        
+        $.post("/admin/izmeniaktivnost", { id: id[1], naziv: naziv.find("textarea").val(), opis: opis.find("textarea").val(), termin: termin.find("textarea").val() }, function(data){
+            if(data){
+                alert("Proizvod je uspesno izmenjen."); 
+                naziv.html(naziv.find("textarea").val());
+                opis.html(opis.find("textarea").val());
+                termin.html(termin.find("textarea").val());
+
+                save.hide();
+                save.parent().find(".edit").show();
+            }else{
+                alert("Nije uneto!");
+            }
+            
+            
+        });
+       
+    });
+</script>

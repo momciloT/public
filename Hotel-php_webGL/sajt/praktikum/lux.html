@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Proba soba</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #fff;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+			
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+           Soba proba
+		   <a href="index.php?soba=4">Vrati se na sajt</a>
+		</div>
+
+		<div id="proba">
+		<script src="http://threejs.org/build/three.min.js"></script>
+		<script src="http://threejs.org/examples/js/loaders/ColladaLoader.js"></script>
+		<script src="http://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+		<script src="http://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+		<script src="http://threejs.org/examples/js/loaders/OBJMTLLoader.js"></script>
+		<script src="http://threejs.org/examples/js/Detector.js"></script>
+		<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+		<script src="TrackballControls.js"></script>
+		<script>
+			var container, stats;
+
+			var camera, scene, renderer,controls;
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+
+			init();
+			animate();
+
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.z = 160;
+				camera.position.y = 50;
+				
+				
+            controls = new THREE.TrackballControls( camera );
+				
+				scene = new THREE.Scene();
+				
+		
+				var ambient = new THREE.AmbientLight( 0x101030 );
+				scene.add( ambient );
+
+				var dLight = new THREE.DirectionalLight(0xffffff);
+				dLight.position.set(0, 100, 0);
+				dLight.castShadow = true;
+				dLight.shadowCameraVisible = true;
+				scene.add(dLight);
+				
+				/*var pointLight = new THREE.PointLight( 0xffffff, 1, 80 ); pointLight.position.set( 90, 10, 80 ); scene.add( pointLight ); var sphereSize = 1; var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize ); scene.add( pointLightHelper );*/
+		
+				/*var pointLight2 = new THREE.PointLight( 0xffffff, 1, 100 ); pointLight2.position.set( 80, 35, -80 ); scene.add( pointLight2 ); var sphereSize = 1; var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize ); scene.add( pointLightHelper2 );
+	*/
+			
+				// OBJMTL-sto
+				
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/Modern_Table_(Deployed).obj','models/Modern_Table_(Deployed).mtl', function ( object ) {
+					object.position.x = 13;
+					object.position.z = 8;
+					object.rotation.y=1.58;
+                    object.scale.x = 0.3;
+                    object.scale.y = 0.3;
+                    object.scale.z = 0.3;
+					scene.add( object );
+				} );
+				
+				//komoda
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/Buffet_Moderne.obj','models/Buffet_Moderne.mtl', function ( object ) {
+					object.position.x = 130;
+					object.position.y = 0.51;
+					object.rotation.y=-1.6;
+                    object.scale.x = 0.3;
+                    object.scale.y = 0.3;
+                    object.scale.z = 0.3;
+					scene.add( object );
+				} );
+				
+				//Radijator 1
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/Radiateur.obj','models/Radiateur.mtl', function ( object ) {
+					object.position.x = -110;
+				   object.position.z = 94;
+				    object.position.y = 5;
+					object.rotation.y=1.6;
+                    object.scale.x = 0.3;
+                    object.scale.y = 0.3;
+                    object.scale.z = 0.3;
+					scene.add( object );
+				} );
+				//Radijator 2
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/Radiateur.obj','models/Radiateur.mtl', function ( object ) {
+					object.position.x = -110;
+				   object.position.z = -65;
+				    object.position.y = 5;
+					object.rotation.y=1.6;
+                    object.scale.x = 0.3;
+                    object.scale.y = 0.3;
+                    object.scale.z = 0.3;
+					scene.add( object );
+				} );
+			 	//Radijator spavaca
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/Radiateur.obj','models/Radiateur.mtl', function ( object ) {
+					object.position.x = -110;
+				   object.position.z = 195;
+				    object.position.y = 5;
+					object.rotation.y=1.6;
+                    object.scale.x = 0.3;
+                    object.scale.y = 0.3;
+                    object.scale.z = 0.3;
+					scene.add( object );
+				} );
+		
+		//vrata		
+		var manager = new THREE.LoadingManager();
+	manager.onProgress = function ( item, loaded, total ) {
+	console.log( item, loaded, total );
+	};
+	var texture = new THREE.Texture();
+	var loader = new THREE.ImageLoader( manager );
+	loader.load( 'images/white.jpg', function ( image ) {
+	texture.image = image;
+	texture.needsUpdate = true;
+	} );
+	// model
+	var loader = new THREE.OBJLoader( manager );
+	loader.load( 'models/frise11_z_.obj', function ( object ) {
+	object.traverse( function ( child ) {
+	if ( child instanceof THREE.Mesh ) {
+	child.material.map = texture;
+	}
+	} );
+	object.position.x = 80;
+	object.position.z = -124;
+	object.rotation.y=-1.56;
+	object.scale.set(0.05, 0.025, 0.025);
+	scene.add( object );
+	} );
+	//vrata2
+	var loader = new THREE.OBJLoader( manager );
+	loader.load( 'models/frise11_z_.obj', function ( object ) {
+	object.traverse( function ( child ) {
+	if ( child instanceof THREE.Mesh ) {
+	child.material.map = texture;
+	}
+	} );
+	object.position.x = -45;
+	object.position.z = 124;
+	object.rotation.y=1.56;
+	object.scale.set(0.025, 0.025, 0.025);
+	scene.add( object );
+	} );
+	//vrata2-soba
+	var loader = new THREE.OBJLoader( manager );
+	loader.load( 'models/frise11_z_.obj', function ( object ) {
+	object.traverse( function ( child ) {
+	if ( child instanceof THREE.Mesh ) {
+	child.material.map = texture;
+	}
+	} );
+	object.position.x = -45;
+	object.position.z = 126;
+	object.rotation.y=-1.56;
+	object.scale.set(0.025, 0.025, 0.025);
+	scene.add( object );
+	} );
+	//vrata-kupatilo
+	var loader = new THREE.OBJLoader( manager );
+	loader.load( 'models/frise11_z_.obj', function ( object ) {
+	object.traverse( function ( child ) {
+	if ( child instanceof THREE.Mesh ) {
+	child.material.map = texture;
+	}
+	} );
+	object.position.x = 80;
+	object.position.z = -126;
+	object.rotation.y=1.56;
+	object.scale.set(0.05, 0.025, 0.025);
+	scene.add( object );
+	} );
+ 
+				//DEA-TV
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/TV1.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = 130;
+				object.position.y = 25;
+				object.position.z = -18;
+				object.rotation.y=-1.6;
+			
+				
+				object.scale.set(0.05, 0.05, 0.05);
+				object.updateMatrix();
+				scene.add(object);
+				});					
+				//DAE-sofa
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/Gsofa.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = -32;
+				object.position.y = 1;
+				object.position.z = -25;
+				object.rotation.y=3.55;
+				object.scale.set(0.06, 0.06, 0.06);
+				object.updateMatrix();
+				scene.add(object);
+				});
+				//DAE-Biljka 1
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/plant.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = 110;
+				object.position.z = 90;
+				object.position.y = 1;
+				object.scale.set(0.08, 0.08, 0.08);
+				object.updateMatrix();
+				scene.add(object);
+				});
+				//OBJMTL-biljka 2
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/plant2.obj','models/plant2.mtl', function ( object ) {
+					object.position.x = -90;
+				object.position.z = -100;
+				object.position.y =1;
+				object.scale.set(0.08, 0.08, 0.08);
+				scene.add(object);
+				} );
+				//OBJMTL-prozor 1
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/window4.obj','models/window4.mtl', function ( object ) {
+					object.position.x = -110;
+				object.position.z = 80;
+				object.position.y = 25;
+				object.scale.set(0.03, 0.07, 0.1);
+				scene.add(object);
+				} );
+				
+				//OBJMTL-prozor 2
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/window4.obj','models/window4.mtl', function ( object ) {
+					object.position.x = -110;
+				object.position.z = -80;
+				object.position.y = 25;
+				object.scale.set(0.03, 0.07, 0.1);
+				scene.add(object);
+				} );
+				//OBJMTL-prozor 2
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/window4.obj','models/window4.mtl', function ( object ) {
+					object.position.x = -110;
+				object.position.z = 180;
+				object.position.y = 25;
+				object.scale.set(0.03, 0.07, 0.1);
+				scene.add(object);
+				} );
+				
+				//DAE-kada
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/kupatilo/bath.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = 10;
+				object.position.z = -208;
+				object.position.y = 1;
+				object.scale.set(0.06, 0.06, 0.06);
+				object.updateMatrix();
+				scene.add(object);
+				});
+				//DAE-solja
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/kupatilo/solja.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = 10;
+				object.position.z = -160;
+				object.position.y = 1;
+				object.scale.set(0.06, 0.06, 0.06);
+				object.updateMatrix();
+				scene.add(object);
+				});
+				//DAE-lavabo
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/kupatilo/lavabo.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = 98;
+				object.position.z = -212;
+				object.position.y = 14;
+				object.scale.set(0.04, 0.04, 0.04);
+				object.updateMatrix();
+				scene.add(object);
+				});
+				
+				//DAE-krevet-spavaca
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/spavaca/lettoCiliegio.obj','models/spavaca/lettoCiliegio.mtl', function ( object ) {
+				object.position.x = -130;
+				object.position.z = 294;
+				object.position.y = 1;
+				object.rotation.y=3.15;
+				object.scale.set(0.4, 0.4, 0.4);
+				scene.add(object);
+				});
+				//OBJMTL-komoda spavca
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'models/spavaca/Modern_Closet.obj','models/spavaca/Modern_Closet.mtl', function ( object ) {
+				object.position.x = 0;
+				object.position.z = 135;
+				object.position.y =5;
+				object.scale.set(0.3, 0.3, 0.3);
+				scene.add(object);
+				} );
+				
+				/*//DAE-prozor
+				var oLoader = new THREE.ColladaLoader();
+				oLoader.load('models/kupatilo/windowbath.dae', function(collada) {
+				var object = collada.scene;
+				var texture = collada.skins[0];
+				object.position.x = 137.2;
+				object.position.z = -180;
+				object.position.y = 25;
+				object.rotation.y=-1.56;
+				object.scale.set(0.06, 0.06, 0.06);
+				object.updateMatrix();
+				scene.add(object);
+				});
+				
+				*/
+				//slika
+				var slikageo=new THREE.CubeGeometry(50,30,0);
+				var texturaslika=THREE.ImageUtils.loadTexture( 'images/van-gog.jpg' );
+				var materialslika = new THREE.MeshBasicMaterial( {map:texturaslika} );
+				var slika=new THREE.Mesh(  slikageo, materialslika );
+				slika.position.z=-120;
+				slika.position.y=40;
+				slika.rotation.x=0.1;
+				scene.add(slika);
+				
+				//pogled-prozori
+				var pogledgeo=new THREE.CubeGeometry(0,34,27);
+				var texturapogled1=THREE.ImageUtils.loadTexture( 'images/pogled1.jpg' );
+				var texturapogled2=THREE.ImageUtils.loadTexture( 'images/pogled2.jpg' );
+				var materialpogled1 = new THREE.MeshBasicMaterial( {map:texturapogled1} );
+				var materialpogled2 = new THREE.MeshBasicMaterial( {map:texturapogled2} );
+				var pogled1=new THREE.Mesh(  pogledgeo, materialpogled1 );
+				var pogled2=new THREE.Mesh(  pogledgeo, materialpogled2 );
+				var pogled3=new THREE.Mesh(  pogledgeo, materialpogled2 );
+				pogled1.position.x=-109;
+				pogled1.position.y=43;
+				pogled1.position.z=79.5;
+				scene.add(pogled1);
+				pogled2.position.x=-109;
+				pogled2.position.y=43;
+				pogled2.position.z=-79.5;
+				scene.add(pogled2);
+				pogled3.position.x=-109;
+				pogled3.position.y=43;
+				pogled3.position.z=180;
+				scene.add(pogled3);
+				
+				//Zid, pod-kupatilo
+				var poddim=new THREE.CubeGeometry(130,0,100);
+				var texturapodkupatilo=THREE.ImageUtils.loadTexture( 'images/plocice.jpg' );
+				var materialkupatilo = new THREE.MeshBasicMaterial( {map:texturapodkupatilo} );
+				var podkuptilo = new THREE.Mesh( poddim, materialkupatilo );
+				podkuptilo.position.z=-175;
+				podkuptilo.position.x=75;
+				scene.add(podkuptilo);
+				var geozid1kupatilo=new THREE.CubeGeometry(1,66,100);
+				var geozid2kupatilo=new THREE.CubeGeometry(130,66,0);
+				var geozid3kupatilo=new THREE.CubeGeometry(130,66,1);
+				var zid1kupatilo = new THREE.Mesh( geozid1kupatilo, materialkupatilo );
+				var zid2kupatilo = new THREE.Mesh( geozid1kupatilo, materialkupatilo );
+				var zid3kupatilo = new THREE.Mesh( geozid2kupatilo, materialkupatilo );
+				var zid4kupatilo = new THREE.Mesh( geozid3kupatilo, materialkupatilo );
+				zid1kupatilo.position.x=140;
+				zid1kupatilo.position.y=33;
+				zid1kupatilo.position.z=-175;
+				scene.add(zid1kupatilo);
+				zid2kupatilo.position.x=10;
+				zid2kupatilo.position.y=33;
+				zid2kupatilo.position.z=-175;
+				scene.add(zid2kupatilo);
+				zid3kupatilo.position.x=75.5;
+				zid3kupatilo.position.y=33;
+				zid3kupatilo.position.z=-126;
+				scene.add(zid3kupatilo);
+				zid4kupatilo.position.x=75.5;
+				zid4kupatilo.position.y=33;
+				zid4kupatilo.position.z=-225;
+				scene.add(zid4kupatilo);
+				var slivnikgeo=new THREE.CubeGeometry(11,0,11);
+				var texturaslivnik=THREE.ImageUtils.loadTexture( 'images/slivnik.jpg' );
+				var materialslivnik = new THREE.MeshBasicMaterial( {map:texturaslivnik} );
+				var slivnik = new THREE.Mesh( slivnikgeo, materialslivnik );
+				slivnik.position.z=-170;
+				slivnik.position.x=99;
+				slivnik.position.y=1;
+				scene.add(slivnik);
+												
+				//Zid, pod-dnevna
+				var geometrypod = new THREE.CubeGeometry( 250, 0, 250 ); 
+				var texturepod = THREE.ImageUtils.loadTexture( 'images/pod.jpg' );
+				var materialpod = new THREE.MeshBasicMaterial( {map:texturepod} );
+				var pod = new THREE.Mesh( geometrypod, materialpod );
+				scene.add( pod );
+				var geometryzid1 = new THREE.CubeGeometry( 1, 66, 251 );
+				var geometryzid2 = new THREE.CubeGeometry( 251, 66, 1 );
+				var texturezid = THREE.ImageUtils.loadTexture( 'images/zid.jpg' );
+				var material7 = new THREE.MeshBasicMaterial( {map:texturezid} );
+				var zid3 = new THREE.Mesh( geometryzid2, material7 );
+				var zid4 = new THREE.Mesh( geometryzid2, material7 );
+				var zid1 = new THREE.Mesh( geometryzid1, material7 );
+				var zid2 = new THREE.Mesh( geometryzid1, material7 );
+				zid3.position.z=125;
+				zid3.position.x=15;
+				zid3.position.y=33;
+				zid4.position.z=-125;
+				zid4.position.x=15;
+				zid4.position.y=33;
+				zid2.position.x=140;
+				zid2.position.y=33;
+				zid1.position.x=-110;
+				zid1.position.y=33;
+				pod.position.x=15;
+				scene.add( zid4 );
+				scene.add( zid3 );
+				scene.add( zid2 );
+				scene.add( zid1 );
+				
+				//Zid, pod-spavaca
+				var podspavacageo=new THREE.CubeGeometry(140,0,140);
+				var podspavaca= new THREE.Mesh( podspavacageo, materialpod );
+				podspavaca.position.z=195;
+				podspavaca.position.x=-40;
+				scene.add(podspavaca);
+				var geozid1spavaca=new THREE.CubeGeometry(140,66,0);
+				var geozid2spavaca=new THREE.CubeGeometry(1,66,140);
+				var geozid3spavaca=new THREE.CubeGeometry(140,66,1);
+				var texturezidspavaca = THREE.ImageUtils.loadTexture( 'images/zidspavaca.jpg' );
+				var materialspavaca= new THREE.MeshBasicMaterial( {map:texturezidspavaca} );
+				var zid1spavaca=new THREE.Mesh( geozid1spavaca, materialspavaca );
+				var zid2spavaca=new THREE.Mesh( geozid2spavaca, materialspavaca );
+				var zid3spavaca=new THREE.Mesh( geozid2spavaca, materialspavaca );
+				var zid4spavaca=new THREE.Mesh( geozid3spavaca, materialspavaca );
+				zid1spavaca.position.x=-40;
+				zid1spavaca.position.y=33;
+				zid1spavaca.position.z=126;
+				scene.add(zid1spavaca);
+				zid2spavaca.position.x=-110;
+				zid2spavaca.position.y=33;
+				zid2spavaca.position.z=195;
+				scene.add(zid2spavaca);
+				zid3spavaca.position.x=30;
+				zid3spavaca.position.y=33;
+				zid3spavaca.position.z=195;
+				scene.add(zid3spavaca);
+				zid4spavaca.position.x=-40;
+				zid4spavaca.position.y=33;
+				zid4spavaca.position.z=265;
+				scene.add(zid4spavaca);
+				//slika-spavaca
+				var slikageos=new THREE.CubeGeometry(0,30,45);
+				var texturaslikas=THREE.ImageUtils.loadTexture( 'images/slika.jpg' );
+				var materialslikas = new THREE.MeshBasicMaterial( {map:texturaslikas} );
+				var slikas=new THREE.Mesh(  slikageos, materialslikas );
+				slikas.position.z=180;
+				slikas.position.y=40;
+				slikas.position.x=29;
+				scene.add(slikas);
+				
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function onDocumentMouseMove( event ) {
+				mouseX = ( event.clientX - windowHalfX ) / 2;
+				mouseY = ( event.clientY - windowHalfY ) / 2;
+			}
+
+			
+			
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+                //obj.rotation.y += (0.2*(Math.PI / 180));
+                //obj.rotation.y %=360;
+
+				//camera.position.x += ( mouseX - camera.position.x ) * .05;
+				//camera.position.y += ( - mouseY - camera.position.y ) * .05;
+				
+				controls.update();
+
+				renderer.render( scene, camera );
+			}
+		</script>
+		</div>
+	</body>
+</html>

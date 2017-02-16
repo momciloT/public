@@ -1,0 +1,38 @@
+<table class="table table-bordered table-hover tablestriped tablesorter">
+    <tr>
+        <th>
+            <i> Ime slavljenika </i>
+        </th>
+        <th>
+            <i> Datum </i>
+        </th>
+        <th>
+            <i> Termin </i>
+        </th>
+        <th>
+            <i> Obriši </i>
+        </th>
+    </tr>
+    <?php
+    foreach ($this->dohvati_rezervacije as $ds) {
+        echo '<tr>';
+        echo '<td>';
+        echo $ds['imeS'];
+        echo '</td>';
+        echo '<td>';
+        echo $ds['datum'];
+        echo '</td>';
+         echo '<td>';
+        echo $ds['termin'];
+        echo '</td>';
+        echo '<td>';
+        echo '<a href="/admin/obrezervacije/id/' . $ds['id'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Delete</a>';
+        echo '</td>';
+
+        echo '</tr>';
+    }
+    ?>
+</table>
+</div>
+</div>

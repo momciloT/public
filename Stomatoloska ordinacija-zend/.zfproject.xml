@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<projectProfile type="default" version="1.12.17dev">
+  <projectDirectory>
+    <projectProfileFile filesystemName=".zfproject.xml"/>
+    <applicationDirectory classNamePrefix="Application_">
+      <configsDirectory>
+        <applicationConfigFile type="ini"/>
+      </configsDirectory>
+      <controllersDirectory>
+        <controllerFile controllerName="Index">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="logout"/>
+        </controllerFile>
+        <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Ordinacija">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="podesavanja"/>
+          <actionMethod actionName="editordinacija"/>
+          <actionMethod actionName="ordinacijaUpdate"/>
+          <actionMethod actionName="ordinacijaizmeni"/>
+          <actionMethod actionName="logochange"/>
+          <actionMethod actionName="pretraga"/>
+          <actionMethod actionName="statistika"/>
+          <actionMethod actionName="podsetnikunos"/>
+        </controllerFile>
+        <controllerFile controllerName="Pacijenti">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="dodaj"/>
+          <actionMethod actionName="pacijenti"/>
+          <actionMethod actionName="pacijentprikaz"/>
+          <actionMethod actionName="pocetnistatus"/>
+          <actionMethod actionName="pocetnostanje"/>
+          <actionMethod actionName="pocetnostanjesave"/>
+          <actionMethod actionName="pocetnostanjeprovera"/>
+          <actionMethod actionName="pocetnostanjeupdate"/>
+          <actionMethod actionName="radsave"/>
+          <actionMethod actionName="radovi"/>
+          <actionMethod actionName="operacijadetaljno"/>
+          <actionMethod actionName="obrisioperaciju"/>
+          <actionMethod actionName="podacio"/>
+          <actionMethod actionName="slikasave"/>
+          <actionMethod actionName="slikasave2"/>
+          <actionMethod actionName="radoviStampa"/>
+          <actionMethod actionName="radoviprint"/>
+          <actionMethod actionName="odjava"/>
+          <actionMethod actionName="migracija"/>
+          <actionMethod actionName="editpacijent"/>
+        </controllerFile>
+      </controllersDirectory>
+      <formsDirectory>
+        <formFile formName="Login"/>
+        <formFile formName="DodajPacijenta"/>
+        <formFile formName="Editordinacija"/>
+        <formFile formName="Migracija"/>
+      </formsDirectory>
+      <layoutsDirectory>
+        <layoutScriptsDirectory>
+          <layoutScriptFile layoutName="layout"/>
+        </layoutScriptsDirectory>
+      </layoutsDirectory>
+      <modelsDirectory>
+        <modelFile modelName="Pacijent"/>
+        <modelFile modelName="DbTableP"/>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Pacijent"/>
+          <dbTableFile dbTableName="Proba"/>
+          <dbTableFile dbTableName="Ordinacijainfo"/>
+          <dbTableFile dbTableName="Stanje"/>
+          <dbTableFile dbTableName="Radovi"/>
+          <dbTableFile dbTableName="Rad"/>
+          <dbTableFile dbTableName="Zubstanje"/>
+          <dbTableFile dbTableName="Pacijentinfo"/>
+          <dbTableFile dbTableName="Stanjeizoperacija"/>
+        </dbTableDirectory>
+        <modelFile modelName="PacijentMapper"/>
+        <modelFile modelName="OrdinacijainfoMapper"/>
+        <modelFile modelName="Ordinacijainfo"/>
+        <modelFile modelName="Stanje"/>
+        <modelFile modelName="StanjeMapper"/>
+        <modelFile modelName="Radovi"/>
+        <modelFile modelName="RadoviMapper"/>
+        <modelFile modelName="Rad"/>
+        <modelFile modelName="RadMapper"/>
+        <modelFile modelName="StanjezubMapper"/>
+        <modelFile modelName="PacijentinfoMapper"/>
+        <modelFile modelName="Pacijentinfo"/>
+        <modelFile modelName="StanjeizoperacijaMapper"/>
+      </modelsDirectory>
+      <modulesDirectory enabled="false"/>
+      <servicesDirectory enabled="false"/>
+      <viewsDirectory>
+        <viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Error">
+            <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="dodaj"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pacijenti"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pacijentprikaz"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pocetnistatus"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="podesavanja"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="editordinacija"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pocetnostanje"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pocetnostanjesave"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pocetnostanjeprovera"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="pocetnostanjeupdate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="ordinacijaUpdate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="ordinacijaizmeni"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="radsave"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="radovi"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="operacijadetaljno"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="obrisioperaciju"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="podacio"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="slikasave"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="slikasave2"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="logochange"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="radoviStampa"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="radoviprint"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="odjava"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="pretraga"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="migracija"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Pacijenti">
+            <viewScriptFile forActionName="editpacijent"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="statistika"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Ordinacija">
+            <viewScriptFile forActionName="podsetnikunos"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
+      </viewsDirectory>
+      <bootstrapFile filesystemName="Bootstrap.php"/>
+    </applicationDirectory>
+    <dataDirectory enabled="false">
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
+    </dataDirectory>
+    <docsDirectory>
+      <file filesystemName="README.txt"/>
+    </docsDirectory>
+    <libraryDirectory>
+      <zfStandardLibraryDirectory enabled="false"/>
+    </libraryDirectory>
+    <publicDirectory>
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
+    </publicDirectory>
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
+    <testsDirectory>
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+      <testPHPUnitBootstrapFile filesystemName="bootstrap.php"/>
+      <testApplicationDirectory>
+        <testApplicationControllerDirectory>
+          <testApplicationControllerFile forControllerName="Index"/>
+        </testApplicationControllerDirectory>
+      </testApplicationDirectory>
+      <testLibraryDirectory/>
+    </testsDirectory>
+  </projectDirectory>
+</projectProfile>

@@ -1,0 +1,79 @@
+<?php echo $this->form; ?>
+<table class="table table-bordered table-hover tablestriped tablesorter">
+    <tr>
+        <th>
+            <i>Naziv aktivnosti</i>
+        </th>
+        <th>
+            <i> Cena </i>
+        </th>
+        <th>
+            <i> Obriši </i>
+        </th>
+        <th>
+            <i>Izmeni </i>
+        </th>
+    </tr>
+    <?php
+    foreach ($this->dohvati_cenovnik as $ds) {
+        echo '<tr>';
+        echo '<td class="naziv_aktivnosti">';
+        echo $ds['naziv'];
+        echo '</td>';
+        echo '<td class="cena_aktivnosti">';
+        echo $ds['cena'];
+        echo '</td>';
+        echo '<td>';
+        echo '<a href="/admin/obcena/id/' . $ds['id'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Obriši</a>';
+        echo '</td>';
+        echo '<td>';
+        echo '<a class="edit" href="javascript:void(0);">Izmeni</a> <button class="save" style="display:none;" id="save_'.$ds['id'].'">Zapamti</button>';
+        echo '</td>';
+
+        echo '</tr>';
+    }
+    ?>
+</table>
+</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $('.edit').click(function(){
+        $(this).hide();
+        $(this).parent().find(".save").show();
+        
+        var naziv = $(this).parent().parent().find('.naziv_aktivnosti');
+        var opis = $(this).parent().parent().find('.cena_aktivnosti');
+        
+        
+        naziv.html('<textarea name="naziv" class="naziv_aktivnosti" style="width:100%;height:100px;">'+naziv.html()+'</textarea>');
+        opis.html('<textarea name="opis" class="cena_aktivnosti" style="width:100%;height:100px;">'+opis.html()+'</textarea>');
+    });
+    
+    $('.save').click(function(){
+        var save = $(this);
+        var naziv = $(this).parent().parent().find('.naziv_aktivnosti');
+        var opis = $(this).parent().parent().find('.cena_aktivnosti');
+     
+        
+        var id = save.attr('id').split('_');
+        
+        $.post("/admin/izmenicena", { id: id[1], naziv: naziv.find("textarea").val(), opis: opis.find("textarea").val()}, function(data){
+            if(data){
+                alert("Proizvod je uspesno izmenjen."); 
+                naziv.html(naziv.find("textarea").val());
+                opis.html(opis.find("textarea").val());
+                
+
+                save.hide();
+                save.parent().find(".edit").show();
+            }else{
+                alert("Nije uneto!");
+            }
+            
+            
+        });
+       
+    });
+</script>

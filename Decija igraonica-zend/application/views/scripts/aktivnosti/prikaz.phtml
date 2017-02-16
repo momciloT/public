@@ -1,0 +1,38 @@
+<script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+<script src="/js/lightbox-plus-jquery.js"></script>
+<p style="font-size: 15px;"><?php print $this->aktivnost['opis']; ?></p>
+</br>
+<h2>Slike</h2>
+ <hr>
+</br>
+
+<?php foreach ($this->slike as $slike) { ?>
+
+<a href="<?php print $slike['putanja']; ?>" data-lightbox="roadtrip"><img width="250px"src="<?php print $slike['putanja']; ?>"></img></a>
+<?php } ?>
+</br>
+</br>
+
+<h2>Komentari</h2>
+<hr>
+<?php foreach ($this->komentari as $stavka) { if($this->komentari==NULL){echo "Nema komentara";}?>
+
+    <div class="komentar">
+        <div class="komentar_slika"><img src="/img/comment.png" width="60px" style="margin-top: 10px;"></div>
+        <div class="komentar_text">
+            <p class="username"><?php print $stavka['ime']; ?></p><p> <?php print $stavka['text']; ?></p>
+        </div>
+    </div>
+    <?php
+}
+?>
+<h3 class="unos_komentar">
+    <?php
+    print $this->komentar;
+    ?>
+</h3>

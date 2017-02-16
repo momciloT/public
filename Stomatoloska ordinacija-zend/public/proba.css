@@ -1,0 +1,679 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 8, 2016, 1:34:13 PM
+    Author     : Beast
+*/
+
+.slika-profil-resize{
+    width:300px;
+    height: auto;
+    max-height: 250px;
+}
+
+.avatar-profil-resize{
+    width:200px;
+    height: auto; 
+    max-height: 250px;
+}
+.logoordinacija:hover{
+    opacity: 0.6;
+}
+
+.logo-bar{
+    width: 50px;
+    display: inline !important;
+    max-height: 39px;
+}
+
+.bojaP{
+    background-color: #238b68;
+    z-index: 999;
+}
+
+#forma{
+    margin-top: 15px;
+    margin-left:auto;
+    margin-right:auto;
+    width: 550px;
+
+}
+.forma-polja{
+    margin-bottom: 12px;
+
+}
+
+.top-mar{
+    margin-top:1%;
+}
+
+.imeprezimenaslov{
+    margin:0.5%;
+    font-size: 2.3em;
+}
+
+.slika-profil{
+    padding-top:25px;
+}
+.slika-dugme{
+    text-decoration: none;
+}
+.slika-dugme:hover{
+    text-decoration: none;
+    opacity: 0.5;
+    filter: Alpha(opacity=50);
+}
+
+.trenutnostanje{
+
+}
+
+.border-bottom-siva{
+    display: flex;
+    border-bottom:  2px solid;
+    border-color: #e7e7e7;
+}
+.red1-pacijet{
+    min-height:  100px;
+    text-align: center;
+
+    margin-top:10px;
+    font-size: 1.45em;
+
+}
+.red2-pacijent{
+    min-height:  100px;
+
+    margin-top:15px;
+    text-align: center;
+    margin-bottom: 15px;
+
+}
+.red2-pacijent p{
+    margin-top:10px;
+}
+
+.red3-pacijent{
+    margin-top:15px;
+    min-height:  100px;
+
+
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.footer{
+    height: 40px; 
+
+}
+
+
+.zub{
+    pointer-events: none;
+    display: none;
+    padding-left: 10%;
+}
+#p1{
+    width: 33%;
+
+    height: 130px;
+    display: inline-block;
+}
+#p3{
+    width: 32%;
+    float:right;
+    height: 130px;
+    display: inline-block;
+}
+#p5{
+    width: 32%;
+    float:left;
+    height: 130px;
+    display: inline-block;
+}
+
+#p2{
+    width: 100%;
+
+    height: 85px;
+
+}
+#p4{
+    width: 100%;
+
+    height: 85px;
+}
+
+
+
+/*--opis ikonica
+i:hover {
+  color: #23527c;
+  position: relative;
+}
+
+i[title]:hover:after {
+  content: attr(title);
+  padding: 2px 4px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+*/
+
+/* The Overlay (background) */
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition:0.3s;
+
+}
+
+.overlay-content {
+    position: relative;
+    top: 7%;
+    text-align: center;
+    margin: 0 auto;
+    width: 830px;
+    height: 570px;
+    background-color: white;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 0px 4px #222;
+    -webkit-box-shadow: 0px 0px 4px #222;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.1s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px !important;
+}
+
+@media screen and (max-height: 650px) {
+    .overlay a {font-size: 20px}
+    .closebtn {
+        font-size: 40px !important;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+
+/*overlay pretraga*/
+.overlay2 {
+    height: 100%;
+    width: 0;
+    position:fixed;
+    z-index: 2;
+    top:0px;
+    left: 251px;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+
+}
+
+.overlay-content2 {
+    position: relative;
+    top: 13%;
+    text-align: center;
+    margin: 0 auto;
+    width: 920px;
+    height: 550px;
+    background-color: white;
+    overflow-x: hidden;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 0px 4px #222;
+    -webkit-box-shadow: 0px 0px 4px #222;
+}
+
+.overlay2 a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.1s;
+}
+
+.overlay2 a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.closebtn2 {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    font-size: 60px !important;
+}
+
+@media screen and (max-height: 650px) {
+    .overlay2 a {font-size: 20px}
+    .closebtn2 {
+        font-size: 40px !important;
+        top: 30px;
+        right: 20px;
+    }
+}
+
+
+
+/*Radio button*/
+.nista input[type=radio]{
+    /* hide original inputs */
+    visibility: hidden;
+    position: absolute;
+}
+.nista input[type=radio] + label,
+.nista input[type=checkbox] + label{
+    cursor:pointer;
+}
+.nista input[type=radio] + label:before
+{
+    height:16px;
+    margin-right: 4px;
+    content: " ";
+    display:inline-block;
+    vertical-align: baseline;
+    transition: 0.3s;
+    border:2px solid #8a8a9c;
+    border-radius:10px;
+    box-shadow: inset 0 -3px 6px #e4e4e4;
+    transition: 0.3s;
+}
+
+/* CUSTOM RADIO AND CHECKBOX STYLES */
+/* DEFAULT */
+.nista input[type=radio] + label:before{
+    border-radius:50%;
+    width:16px;
+}
+/* CHECKED */
+.nista input[type=radio]:checked + label:before{
+    box-shadow: inset 0 -1px 3px #8a8a9c, inset 0 0 1px #222, inset 0 0 0 6px #8a8a9c;
+}
+
+
+
+.plava input[type=radio]{
+    /* hide original inputs */
+    visibility: hidden;
+    position: absolute;
+}
+.plava input[type=radio] + label,
+.plava input[type=checkbox] + label{
+    cursor:pointer;
+}
+.plava input[type=radio] + label:before
+{
+    height:16px;
+    margin-right: 4px;
+    content: " ";
+    display:inline-block;
+    vertical-align: baseline;
+    transition: 0.3s;
+    border:2px solid blue;
+    border-radius:10px;
+    box-shadow: inset 0 -3px 6px #e4e4e4;
+    transition: 0.3s;
+}
+
+/* CUSTOM RADIO AND CHECKBOX STYLES */
+/* DEFAULT */
+.plava input[type=radio] + label:before{
+    border-radius:50%;
+    width:16px;
+}
+/* CHECKED */
+.plava input[type=radio]:checked + label:before{
+    box-shadow: inset 0 -1px 3px blue, inset 0 0 1px #222, inset 0 0 0 6px blue;
+}
+
+
+.crvena input[type=radio]{
+    /* hide original inputs */
+    visibility: hidden;
+    position: absolute;
+}
+.crvena input[type=radio] + label,
+.crvena input[type=checkbox] + label{
+    cursor:pointer;
+}
+.crvena input[type=radio] + label:before
+{
+    height:16px;
+    margin-right: 4px;
+    content: " ";
+    display:inline-block;
+    vertical-align: baseline;
+    transition: 0.3s;
+    border:2px solid red;
+    border-radius:10px;
+    box-shadow: inset 0 -3px 6px #e4e4e4;
+    transition: 0.3s;
+}
+
+/* CUSTOM RADIO AND CHECKBOX STYLES */
+/* DEFAULT */
+.crvena input[type=radio] + label:before{
+    border-radius:50%;
+    width:16px;
+}
+/* CHECKED */
+.crvena input[type=radio]:checked + label:before{
+    box-shadow: inset 0 -1px 3px red, inset 0 0 1px #222, inset 0 0 0 6px red;
+}
+
+
+
+.zuto input[type=radio]{
+    /* hide original inputs */
+    visibility: hidden;
+    position: absolute;
+}
+.zuto input[type=radio] + label,
+.zuto input[type=checkbox] + label{
+    cursor:pointer;
+}
+.zuto input[type=radio] + label:before
+{
+    height:16px;
+    margin-right: 4px;
+    content: " ";
+    display:inline-block;
+    vertical-align: baseline;
+    transition: 0.3s;
+    border:2px solid #bbbb15;
+    border-radius:10px;
+    box-shadow: inset 0 -3px 6px #e4e4e4;
+    transition: 0.3s;
+}
+
+/* CUSTOM RADIO AND CHECKBOX STYLES */
+/* DEFAULT */
+.zuto input[type=radio] + label:before{
+    border-radius:50%;
+    width:16px;
+}
+/* CHECKED */
+.zuto input[type=radio]:checked + label:before{
+    box-shadow: inset 0 -1px 3px #bbbb15, inset 0 0 1px #222, inset 0 0 0 6px yellow;
+}
+
+/*Unos rad*/
+#zubi{
+    height: 220px;
+    width: 800px;
+    margin: auto;
+}
+
+#unos_rad{
+    display: block;
+    pointer-events: none;
+    opacity: 0.4;
+}
+#levo_unos{
+    display: inline-table;
+    float:left;
+    width:480px;
+    height: 300px;
+}
+#desno_unos{
+    display: inline-table;
+    float:left;
+    width:342px;
+    height: 300px;
+
+}
+
+.unosarea{
+    margin:15px 0 0 15px;
+    width: 95% !important;
+}
+
+.sirina45{
+    width: 47% !important;
+    display: inline-table !important;
+}
+
+.povrsine{
+    height: 90%;
+}
+.test2{
+    border-top: 50px solid #eee;
+    border-left:  50px solid transparent;
+    border-right: 50px solid transparent;
+    height: 0;
+    width: 294px;
+    display: inline-block;
+    margin-left: -3px;
+
+}
+.test5P{
+    width:20px;
+    height: 240px;
+    float:left;
+    display: inline;
+    margin-top: 33px;
+}
+.test5P polje input {
+    margin-top:20px;
+}
+.test5{
+    border-left: 45px solid #eee;
+    border-top: 40px solid transparent;
+    border-bottom:  40px solid transparent;
+    height: 263px;
+    width: 0px;
+    display: inline;
+    float:left;
+    margin-top: -48px;
+}
+.test3P{
+    width:20px;
+    height: 194px;
+    float:right;
+    display: inline;
+    margin-top: 33px;
+}
+.test3P polje input {
+    margin-top:20px;
+}
+.test3{
+    border-right:  45px solid #eee;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    height: 263px;
+    width: 0px;
+    display: inline;
+    float: left;
+    margin-left: 43px;
+    margin-top: -48px;
+
+}
+.test1{
+    background-color :#eee ;
+    height: 157px;
+    width: 171px;
+    display: inline;
+    float: left;
+    margin-top: -40px;
+    margin-left: -30px;
+}
+
+.test4{
+    border-bottom:  50px solid #eee;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    height: 0;
+    width: 297px;
+    margin-top: 29px;
+    margin-left: 22px;
+
+
+}
+
+
+
+.margintop{
+    margin-top: 20px;
+}
+.margintop40{
+    margin-top: 40px;
+}
+#my_camera{
+    display:none;
+}
+#slikaj{
+    display:none;
+}
+#otkazi{
+    display:none;
+}
+#slikakorisnikfile{
+    display:none;
+}
+#dodaj{
+    display: none;
+}
+
+.zubi-razmak{
+    display: inline-table;
+    margin:2px;
+    margin-left: 10px;
+}
+#example tr td,th{
+    text-align: center;
+
+}
+#tabela-podesavanja{
+    min-width: 570px;
+}
+#tabela-podesavanja td{
+    text-align: center;
+    min-width: 80px;
+}
+#tabela-podesavanja tr{
+    text-align: center;
+
+}
+.font-podesavanja{
+    font-size: 22px;  
+}
+.zubprikaz-mali{
+    width: 30px;
+    height: 45px;
+}
+.zubprikaz-srednji{
+    width: 36px;
+    height: 45px;
+}
+
+.linija-izmedju-zuba{
+    display: inline-table;
+    border-right: 4px solid black;
+    height: 150px;
+    position: absolute;
+    margin: 2px;
+}
+
+/**************************tabela pretaga***********************/
+#tabela-pretraga{
+
+}
+#tabela-pretraga tbody tr{
+    height: 45px;
+
+}
+#tabela-pretraga tbody td{
+    vertical-align: inherit !important;
+    font-size: 15px;
+}
+#tabela-pretraga thead th{
+    font-size: 20px;
+    font-weight: bold;
+    width:250px;
+    height: 50px;
+    background-color: #eee;
+}
+
+/*************************migracija***********************************/
+.migracija{
+    margin: auto;
+    width: 350px;
+    margin-top: 10%;
+
+}
+.migracija-polje-kod{
+    margin-left: 15px !important;
+}
+
+.migracija-polja{
+    width: 340px;
+    margin: 7px;
+}
+
+/**************podsetnik*************/
+.podsetnik{
+    margin-top: 15px;
+    width: 520px;
+    display: inline-block;
+}
+.font-podsetnik{
+    font-size: 13px;
+}
+/******logo migracija*********/
+.logo-migracija{
+    opacity: 0.3;
+    position: absolute;
+    top: 200px;
+    right: 0px;
+}
+/***dugme cuvaj stanje******/
+.dugme-cuvaj-stanje{
+    margin-left: 15%;
+    margin-top: 10%;
+    padding: 25px;  
+}
+
+

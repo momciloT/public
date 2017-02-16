@@ -1,0 +1,74 @@
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
+<script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#mesecno').css('display', 'none');
+
+        $('#mp').click(function () {
+            $('#mesecno').css('display', 'block');
+        });
+        $('#np').click(function () {
+            $('#mesecno').css('display', 'none');
+        });
+
+    });
+
+
+</script>
+
+<div class="margintop">
+
+    <ul  class="nav nav-pills" style="width: 100%;">
+        <li class="active" id="np" style="    width: 49%; text-align: center;  font-weight: bold; font-size: 16px;" >
+            <a  href="#nedeljno" data-toggle="tab">Nedeljni prikaz</a>
+        </li>
+        <li  id="mp" style=" width: 49%;text-align: center; font-weight: bold; font-size: 16px;">
+            <a href="#mesecno" data-toggle="tab">Mesečni prikaz</a>
+        </li>
+
+    </ul>
+
+    <div class="tab-content ">
+        <div class="tab-pane active margintop40" id="nedeljno">
+
+        </div>
+        <div class="margintop40" id="mesecno">
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    Morris.Bar({
+        element: 'nedeljno',
+        data: [
+<?php
+$i=0;
+foreach ($this->datumi as $datumi => $datum) {
+    echo " {u: '$datum', a: ".$this->datumi2[$i]['id']."},";
+    $i++;
+}
+?>        ],
+        xkey: 'u',
+        ykeys: ['a'],
+        labels: ['Ukupan broj operacija',]
+    });
+
+    Morris.Bar({
+        element: 'mesecno',
+        data: [
+            {u:'Mesečni prikaz', a: <?php echo $this->ukupno; ?>,b:<?php echo $this->pojedinacno[0]['id']; ?>,c:<?php echo $this->pojedinacno[1]['id']; ?>,d:<?php echo $this->pojedinacno[2]['id']; ?>,e:<?php echo $this->pojedinacno[3]['id']; ?>,f:<?php echo $this->pojedinacno[4]['id']; ?>}      
+            
+        ],
+        xkey: 'u',
+        ykeys: ['a', 'b','c','d','e','f'],
+        labels: ['Ukupno','Plomba','Keramička krunica','Zub u lečenju','Uklanjanje kamenca','Vadjenje zuba']
+    });
+
+</script>

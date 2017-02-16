@@ -1,0 +1,97 @@
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.logoordinacija', function () {
+            $('#slikakorisnikfile').trigger('click');
+        });
+
+        var inputfile = $("#slikakorisnikfile");
+        inputfile.on("change click", function (ev) {
+
+            if (ev.originalEvent != null) {
+                var ext = $('#slikakorisnikfile').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                    alert('invalid extension!');
+                } else {
+
+                    var formData = new FormData();
+                    formData.append('file', $('#slikakorisnikfile')[0].files[0]);
+                    $.ajax({
+                        url: 'http://zubar/ordinacija/logochange',
+                        type: 'POST',
+                        data: formData,
+                        processData: false, // tell jQuery not to process the data
+                        contentType: false, // tell jQuery not to set contentType
+                        success: function (data) {
+
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+</script>
+<input type="file" id="slikakorisnikfile" />
+
+<div class="col-lg-12">
+    <div class="col-lg-4">
+        <?php
+        foreach ($this->pregled as $stavke => $stavka) {
+            echo '<div><img class="logoordinacija" width="300px" src="/img/logo/' . $this->logo . '"></div>';
+            ?>
+
+        </div>
+
+        <div class="col-lg-8">
+            <table id="tabela-podesavanja">
+                <tr>
+                    <td>
+                        <i class="fa fa-circle-o fa-3x" title="Naziv ordinacije"></i>
+                    </td>
+                    <td class="font-podesavanja">
+                        <?php
+                        echo $stavka['pun_naziv'];
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-phone fa-3x" title="Broj telefona"></i>
+                    </td>
+                    <td class="font-podesavanja">
+                        <?php echo $stavka['broj_telefona']; ?> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-map-marker fa-3x" title="Adresa ordinacije"></i>
+                    </td>
+                    <td class="font-podesavanja">
+                        <?php echo $stavka['adresa']; ?> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-envelope-square fa-3x" title="Email"></i>
+                    </td>
+                    <td class="font-podesavanja">
+                        <?php echo $stavka['email']; ?> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="/ordinacija/editordinacija"><button type="button" class="btn btn-primary btn-lg btn-block">Izmeni podatke</button></a>
+                    </td>
+                </tr>
+
+            </table>
+
+        <?php } ?>
+
+    </div>
+</div>
+
+
+
+
