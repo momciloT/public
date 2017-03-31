@@ -1,7 +1,6 @@
-![Logo](http://framework.zend.com/images/logos/ZendFramework-logo.png)
 
-Welcome to the Zend Framework 1.12 Release! 
 
+Dečija igraonica Miki - ZEND(Framework 1.12) 
 Master: [![Build Status](https://api.travis-ci.org/zendframework/zf1.png?branch=master)](https://travis-ci.org/zendframework/zf1)
 
 RELEASE INFORMATION
