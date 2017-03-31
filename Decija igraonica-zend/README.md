@@ -1,13 +1,8 @@
-
-
-Dečija igraonica Miki - ZEND(Framework 1.12) 
-Master: [![Build Status](https://api.travis-ci.org/zendframework/zf1.png?branch=master)](https://travis-ci.org/zendframework/zf1)
-
-RELEASE INFORMATION
+Dečija igraonica Miki
 ===================
 
-Zend Framework 1.12.17dev Release.
-Released on MMM DD, YYYY.
+Zend Framework 1.12
+Released on 2015.
 
 IMPORTANT FIXES FOR 1.12.17
 ---------------------------
@@ -139,35 +134,3 @@ CONTRIBUTING
 Please see [README-GIT.md](README-GIT.md) and
 [DEVELOPMENT_README.md](DEVELOPMENT_README.md).
 
-QUESTIONS AND FEEDBACK
-======================
-
-Online documentation can be found at http://framework.zend.com/manual.
-Questions that are not addressed in the manual should be directed to the
-appropriate mailing list:
-
-- http://framework.zend.com/wiki/display/ZFDEV/Mailing+Lists
-
-If you find code in this release behaving in an unexpected manner or
-contrary to its documented behavior, please create an issue in the Zend
-Framework issue tracker at:
-
-- https://github.com/zendframework/zf1/issues
-
-If you would like to be notified of new releases, you can subscribe to
-the fw-announce mailing list by sending a blank message to:
-
-- fw-announce-subscribe@lists.zend.com.
-
-LICENSE
-=======
-
-The files in this archive are released under the Zend Framework license.
-You can find a copy of this license in [LICENSE.txt](LICENSE.txt).
-
-ACKNOWLEDGEMENTS
-================
-
-The Zend Framework team would like to thank all the contributors to the Zend
-Framework project, our corporate sponsor, and you, the Zend Framework user.
-Please visit us sometime soon at http://framework.zend.com.
