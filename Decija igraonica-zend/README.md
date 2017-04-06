@@ -1,136 +1,33 @@
-Dečija igraonica Miki
-===================
+#Decija igraonica
 
-Zend Framework 1.12
-Released on 2015.
+Predmet ovog projekta je web sajt za dečiju igraonicu. Sajt poseduje mogućnost oglašavanja aktivnosti koji se odvijaju u igraonici,i one se prikazuju u formi kalendara predstojećih aktivnosti, i u vidu arhive.
+Sajt se sastoji iz dva dela. Postoji autorizovani i neautorizovani deo sajta. Razlika izmedju ulogovanog i neulogovanog korisnika je u tome što ulogovan može da izvrši rezervaciju termina.
+Na sajtu pored osnovnih stvari o igraonici mogu da se vide aktivnosti koje se održavaju i slike sa istih. U delu sajta koji izlistava sve aktivnosti. Klijeti mogu da kontaktiraju vlasnika tako što će popuniti kontakt formu i poslati mail. Sav sadržaj sajta je dinamički i vuče se iz baze. Postoji i poseban deo sajta koji je namenjen administratoru.
+ 
+ 
+ ##Tehnologije
+ 
+ Zend framework(1.12v), HTML, CSS, JQuery, Ajax, JSON, MySQL
+ 
+ ##Opis funkcionalnosti
+ 
+*Gosti mogu postati članovi unošenjem svojih podataka u formu za registraciju. 
 
-IMPORTANT FIXES FOR 1.12.17
----------------------------
+*PREGLED AKTIVNOSTI 
+Svi posetioci sajta mogu pogledati aktivnosti koje se organizuju u igraonici - bilo u formi kalendara predstojećih, arhive održanih ili detalja o pojedinačnoj aktivnosti
 
-See http://framework.zend.com/changelog for full details.
+*PREGLED CENOVNIKA 
+Svaki posetilac sajta može pogledati cenovnik 
 
-NEW FEATURES
-============
+*ZAKAZIVANJE ROĐENDANA
+ Svaki posetilac sajta može odabrati jedan od slobodih termina i zakazati rođendan 
 
-Zend_Loader changes
--------------------
+*KONTAKT
+ Svaki posetilac sajta može da koristi kontakt formu 
 
-A number of autoloaders and autoloader facilities were back ported from
-ZF2 to provide performant alternatives to those already available in the
-1.X releases.  These include: Zend_Loader_StandardAutoloader, which
-improves on Zend_Loader_Autoloader by allowing the ability to specify a
-specific path to associate with a vendor prefix or namespace;
-Zend_Loader_ClassMapAutoloader, which provides the ability to use lookup
-tables for autoloading (which are typically the fastest possible way to
-autoload); and Zend_Loader_AutoloaderFactory, which can both create and
-update autoloaders for you, as well as register them with
-spl_autoload_register().
+*KOMENTARISANJE
+ Registrovani članovi sajta, nakon prijave, imaju mogućnost dodavanja komentara na objavljene aktivnosti 
 
-The Zend_Loader changes were back ported from ZF2 by Matthew Weier
-O’Phinney
-
-Zend_EventManager
------------------
-
-Zend_EventManager is a component that allows you to attach and detach
-listeners to named events, both on a per-instance basis as well as via
-shared collections; trigger events; and interrupt execution of
-listeners.
-
-Zend_EventManager was back ported from ZF2 by Matthew Weier O’Phinney
-
-Zend_Http_UserAgent_Features_Adapter_Browscap
----------------------------------------------
-
-This class provides a features adapter that calls get_browser() in order
-to discover mobile device capabilities to inject into UserAgent device
-instances.
-
-Browscap (http://browsers.garykeith.com/) is an open project dedicated
-to collecting an disseminating a “database” of browser capabilities. PHP
-has built-in support for using these files via the get_browser()
-function. This function requires that your php.ini provides a browscap
-entry pointing to the PHP-specific php_browscap.ini file which is
-available at http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI.
-
-Zend_Http_UserAgent_Features_Adapter_Browscap was created by Matthew
-Weier O’Phinney
-
-Zend_Mobile_Push
-----------------
-
-Zend_Mobile_Push is a component for implementing push notifications for
-the 3 major push notification platforms (Apple (Apns), Google (C2dm) and
-Microsoft (Mpns).
-
-Zend_Mobile_Push was contributed by Mike Willbanks.
-
-Zend_Gdata_Analytics
---------------------
-
-Zend_Gdata_Analytics is an extension to Zend_Gdata to allow interaction
-with Google’s Analytics Data Export API. This extension does not
-encompass any major changes in the overall operation of Zend_Gdata
-components.
-
-Zend_Gdata_Analytics was contributed by Daniel Hartmann.
-
-Removed features
-================
-
-Zend_Http_UserAgent_Features_Adapter_WurflApi
----------------------------------------------
-
-Due to the changes in licensing of WURFL, we have removed the WurflApi
-adapter. We will be providing the WurflApi adapter to ScientiaMobile so
-that users of WURFL will still have that option.
-
-Bug Fixes
-=========
-
-In addition,  over 200 reported issues in the tracker have been fixed.
-We’d like to particularly thank Adam Lundrigan, Frank Brückner and
-Martin Hujer for their efforts in making this happen. Thanks also to the
-many people who ran the ZF1 unit tests and reported their results!
-
-For a complete list of closed issues beginning with 1.12.3, visit:
-
- * https://github.com/zendframework/zf1/issues?labels=&milestone=&page=1&state=closed
- * http://framework.zend.com/changelog/
-
-MIGRATION NOTES
-===============
-
-A detailed list of migration notes may be found at:
-
-http://framework.zend.com/manual/en/migration.html
-
-SYSTEM REQUIREMENTS
-===================
-
-Zend Framework requires PHP 5.2.11 or later. Please see our reference
-guide for more detailed system requirements:
-
-http://framework.zend.com/manual/en/requirements.html
-
-INSTALLATION
-============
-
-Please see [INSTALL.md](INSTALL.md).
-
-REPOSITORY HISTORY
-==================
-
-This repository was created based on the release-1.12 branch of a Subversion
-repository, http://framework.zend.com/svn/framework/standard/. It contains a
-subset of the project history, dating from between the 1.5.0 and 1.6.0 releases,
-and only contains the tags for the 1.12 series. If you would like an older
-version, you may access the subversion repository linked above, or download an
-older version from http://framework.zend.com/downloads/archives.
-
-CONTRIBUTING
-============
-
-Please see [README-GIT.md](README-GIT.md) and
-[DEVELOPMENT_README.md](DEVELOPMENT_README.md).
+*ADMINISTRACIJA
+ Administrator može da upravlja različitim sadržajima na sajtu
 
