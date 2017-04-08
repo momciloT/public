@@ -1,4 +1,4 @@
-#Prodavnica ASP
+# Prodavnica ASP
 
 ##	Tehnologije
 Za izradu sajta su korišdeni HTML, CSS, PHP, JavaScript, JQuer.Sajt je prvobitno napravljen kao Php sajt,da bi sada bio preveden u ASP sajt.Sajt je izradjen u program VisualStudio 2012.
@@ -12,8 +12,8 @@ Za izradu sajta su korišdeni HTML, CSS, PHP, JavaScript, JQuer.Sajt je prvobitn
 *	O nama-Kratak opis firme
 *	Pretraga- pretraga se vrši po nazivu projzvoda. Rezulatat pretrage se upisuje u gredview.
 
-##Uloge
-**Uloga “administrator”-ima mogućnost pristupa administraciji tj. Izmeni podataka u bazi.
-**Uloga ‘korisnik” ima mogućnost I pristup strani za kontakt sa sposobnostima postavljanja pitanja.
-**Neautorizovani korisnik nema gore nevedena prava na satjtu.
+## Uloge
+** Uloga “administrator”-ima mogućnost pristupa administraciji tj. Izmeni podataka u bazi.
+** Uloga ‘korisnik” ima mogućnost I pristup strani za kontakt sa sposobnostima postavljanja pitanja.
+** Neautorizovani korisnik nema gore nevedena prava na satjtu.
 
